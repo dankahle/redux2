@@ -1,0 +1,18 @@
+
+users:<br>
+<div *ngFor="let user of users$|async">
+  id: {{user.id}},
+  name: {{user.name}},
+  age: {{user.age}}
+  <button (click)="age(user)">age</button>
+  <button (click)="selectedUser = user">detail</button>
+  <button (click)="user.getDc()">get dc</button>
+</div>
+<br>
+<div *ngIf="selectedUser as u">
+  detail:<br>
+  id: {{u.id}},
+  name: {{u.name}},
+  age: {{u.age}}
+  <span *ngIf="u.dc">dc: {{u.dc|json}}</span>
+</div>
