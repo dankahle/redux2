@@ -2,7 +2,7 @@
 import {Component} from "@angular/core";
 import {UserApi} from "../user.api";
 import {Observable} from "rxjs/Observable";
-import {User} from "../user";
+import {User, UserCreator} from "../user";
 
 @Component({
   selector: 'dk-user',
@@ -12,8 +12,8 @@ import {User} from "../user";
 export class UserComponent {
   users$: Observable<User[]>;
   selectedUser: User;
-  constructor(userApi: UserApi) {
-    this.users$ = userApi.getAll();
+  constructor(userCreator: UserCreator) {
+    this.users$ = userCreator.getAll();
   }
   age(user) {
     user.incAge(5);
