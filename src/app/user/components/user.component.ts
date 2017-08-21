@@ -13,7 +13,7 @@ export class UserComponent {
   users$: Observable<User[]>;
   selectedUser: User;
   constructor(userCreator: UserCreator) {
-    this.users$ = userCreator.getAll();
+    this.users$ = userCreator.getAll().map(arr => arr.map(user => user.toObject()));
   }
   age(user) {
     user.incAge(5);

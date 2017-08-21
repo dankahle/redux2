@@ -16,3 +16,4 @@ users:<br>
   age: {{u.age}}
   <span *ngIf="u.dc">dc: {{u.dc|json}}</span>
 </div>
+<pre>{{users$|async|json}}</pre>

@@ -46,10 +46,7 @@ export class User {
   }
 
   toObject() {
-    const obj = _.clone(this);
-    delete obj.http;
-    delete obj.dataCategories;
-    return obj;
+    return _.omit(this, ['http', 'dataCategories', 'userApi']);
   }
 
   toJSON() {
