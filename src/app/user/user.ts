@@ -3,7 +3,7 @@ import {Injectable} from "@angular/core";
 import * as _ from 'lodash';
 import {DataCategories} from "../core/data-categories.service";
 import {UserApi} from "./user.api";
-import {Observable} from "rxjs/Observable";
+import {UserRepo} from "./user.repo";
 
 @Injectable()
 export class UserCreator {
@@ -23,35 +23,6 @@ export class UserCreator {
     }
   }
 
-  getAll(): Observable<User[]> {
-    return this.userApi.getAll()
-      .map(data => data.map(user => this.create(user)));
-  }
-
-  getOne(id:number, setInstance: boolean): Observable<User> {
-    return this.userApi.getOne(id)
-      .map(data => {
-        const user = this.create(data);
-        this.instance = user;
-        return user;
-      });
-  }
-
-  add(data) {
-    // user the defaults set in User to set defaults before posting
-    let user: User;
-    if (data instanceof User) {
-      user = data;
-    } else {
-      user = this.create(data);
-    }
-    return this.userApi.add(user.toObject())
-      .map(newUser => this.create(newUser));
-  }
-
-  update(user) {
-    return this.userApi.update(user.toObject());
-  }
 }
 
 export class User {
@@ -59,20 +30,22 @@ export class User {
   name?: string;
   age?: number;
   dc: object;
-  constructor(
-    initial: object,
-    private http: HttpClient,
-    private dataCategories: DataCategories,
-    private userApi: UserApi) {
+  constructor(initial: object, private http: HttpClient, private dataCategories: DataCategories, private userApi: UserApi) {
     _.assign(this, initial);
+    this.fromApi();
   }
 
-  toObject() {
-    return _.omit(this, ['http', 'dataCategories', 'userApi']);
+  // transform object for post/put to api
+  toApi() {
+    return _.omit(_.clone(this), ['http', 'dataCategories', 'userApi', 'userRepo']);
+  }
+
+  // transform object from api
+  fromApi() {
   }
 
   toJSON() {
-    return this.toObject()
+    return this.toApi()
   }
 
   incAge(inc:number) {
