@@ -1,12 +1,29 @@
 
 users:<br>
 <div *ngFor="let user of users$|async">
-  id: {{user.id}},
-  name: {{user.name}},
-  age: {{user.age}}
-  <button (click)="age(user)">age</button>
-  <button (click)="selectedUser = user">detail</button>
-  <button (click)="user.getDc()">get dc</button>
+  <div *ngIf="editingUser !== user">
+    id: {{user.id}},
+    name: {{user.name}},
+    age: {{user.age}}
+    <button (click)="age(user)">age</button>
+    <button (click)="selectedUser = user">detail</button>
+    <button (click)="user.getDc()">get dc</button>
+    <button (click)="editUser(user)">edit</button>
+  </div>
+  <div *ngIf="editingUser === user">
+    edit:
+    name: <input [(ngModel)]="edit.name">
+    age: <input [(ngModel)]="edit.age">
+    <button (click)="editingUser = undefined">cancel</button>
+    <button (click)="updateUser(edit)">save</button>
+  </div>
+</div>
+<br>
+<div>
+  add:
+  name: <input [(ngModel)]="form.name">
+  age: <input [(ngModel)]="form.age">
+  <button (click)="addUser()">add</button>
 </div>
 <br>
 <div *ngIf="selectedUser as u">

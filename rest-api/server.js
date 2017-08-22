@@ -5,13 +5,13 @@ var express = require('express'),
   cors = require('cors');
 
 var app = express()
+app.use(function tap(req, res, next) {
+  console.log(req.method, req.url);
+  next();
+})
 app.use(cors());
 app.use(bodyParser.json());
 
-app.use(function tap(req, res, next) {
-  console.log(req.url);
-  next();
-})
 
 app.use('/api/users', userRouter);
 

@@ -6,12 +6,16 @@ import {UserApi} from "./user.api";
 import {UserCreator} from "./user";
 import {AppModule} from "../app.module";
 import {CoreModule} from "../core/core.module";
+import {FormsModule} from "@angular/forms";
+import {HttpModule} from "@angular/http";
 
 @NgModule({
   imports: [
     CommonModule,
     HttpClientModule,
-    CoreModule
+    CoreModule,
+    FormsModule,
+    HttpModule
   ],
   providers: [UserApi, UserCreator],
   declarations: [UserComponent],

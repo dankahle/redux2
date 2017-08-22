@@ -7,7 +7,7 @@ import {Observable} from "rxjs/Observable";
 
 @Injectable()
 export class UserCreator {
-
+  instance: User;
   constructor(private http: HttpClient, private dataCategories: DataCategories, private userApi: UserApi) {
   }
 
@@ -15,23 +15,49 @@ export class UserCreator {
     return new User(initial, this.http, this.dataCategories, this.userApi);
   }
 
+  setInstance(user) {
+    if (user.subscribe) {
+      user.subscribe(u => this.instance = u);
+    } else {
+      this.instance = user;
+    }
+  }
+
   getAll(): Observable<User[]> {
     return this.userApi.getAll()
       .map(data => data.map(user => this.create(user)));
   }
 
-  getOne(id:number): Observable<User> {
+  getOne(id:number, setInstance: boolean): Observable<User> {
     return this.userApi.getOne(id)
-      .map(user => this.create(user));
+      .map(data => {
+        const user = this.create(data);
+        this.instance = user;
+        return user;
+      });
   }
 
+  add(data) {
+    // user the defaults set in User to set defaults before posting
+    let user: User;
+    if (data instanceof User) {
+      user = data;
+    } else {
+      user = this.create(data);
+    }
+    return this.userApi.add(user.toObject())
+      .map(newUser => this.create(newUser));
+  }
+
+  update(user) {
+    return this.userApi.update(user.toObject());
+  }
 }
 
 export class User {
-  static instance: User;
-  id: number;
-  name: string;
-  age: number;
+  id?: number;
+  name?: string;
+  age?: number;
   dc: object;
   constructor(
     initial: object,
@@ -39,10 +65,6 @@ export class User {
     private dataCategories: DataCategories,
     private userApi: UserApi) {
     _.assign(this, initial);
-  }
-
-  static setInstance(user: User) {
-    User.instance = user;
   }
 
   toObject() {
@@ -62,16 +84,6 @@ export class User {
       .subscribe(dcs => {
         this.dc = _.find(dcs, {name:'Purchase'});
       })
-  }
-
-  add() {
-    this.userApi.add(this.toObject())
-      .subscribe(newUser => _.assign(this, newUser));//dankfix: verify it gets the id on post
-  }
-
-  update() {
-    this.userApi.update(this.toObject())
-      .subscribe(newUser => _.assign(this, newUser));//dankfix: verify it gets updates
   }
 
 }
