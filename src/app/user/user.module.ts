@@ -9,6 +9,7 @@ import {CoreModule} from "../core/core.module";
 import {FormsModule} from "@angular/forms";
 import {HttpModule} from "@angular/http";
 import {UserActions} from "./user.actions";
+import {UserRepo} from "./user.repo";
 
 @NgModule({
   imports: [
@@ -18,7 +19,7 @@ import {UserActions} from "./user.actions";
     FormsModule,
     HttpModule
   ],
-  providers: [UserApi, UserActions],
+  providers: [UserApi, UserCreator, UserRepo, UserActions],
   declarations: [UserComponent],
   exports: [UserComponent],
 })
