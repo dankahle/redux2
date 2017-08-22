@@ -12,6 +12,7 @@
   },
   "private": true,
   "dependencies": {
+    "@angular-redux/store": "^6.5.7",
     "@angular/animations": "^4.3.5",
     "@angular/common": "^4.3.5",
     "@angular/compiler": "^4.3.5",
@@ -27,6 +28,8 @@
     "cors": "^2.8.4",
     "express": "^4.15.4",
     "lodash": "^4.17.4",
+    "redux": "^3.7.2",
+    "redux-observable": "^0.16.0",
     "rxjs": "^5.4.1",
     "zone.js": "^0.8.14"
   },

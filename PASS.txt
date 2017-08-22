@@ -1,0 +1,10 @@
+
+
+
+angular:
+usercreator >> userRepo that uses userCreator
+toApi fromApi methods for additional data and transforms
+maybe a User class and a userView class so you can enumerate the user props to copy only those?
+
+
+
