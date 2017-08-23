@@ -1,0 +1,26 @@
+
+
+
+redux:
+edit and save left
+getDc is hokey as it's all between user/reducer. Should be epic??
+make assessment here? at least stop and look at it before routing and filter.
+you want to get a bit more in userState so you can see how component properties will possibly move out of component and into userState? That's what userState is there for.
+
+maybe state syoudl be: {users, user} instead and with routing move to a detail sub route then you have usersState and userState and they have users and user properties plus any additional metadata
+
+todo:
+routing
+filter with query param, i.e. do it on server or pretend to
+or do it on component?
+
+
+then, make your assessment, or maybe make
+
+
+angular:
+you're struggling with the thickness of that User object, and leaning more towards a coordinator, and you still like the shape shifting of redux, so look for a way you can have a api and ui shape of it
+
+
+
+
