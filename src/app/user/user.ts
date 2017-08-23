@@ -4,15 +4,17 @@ import * as _ from 'lodash';
 import {DataCategories} from "../core/data-categories.service";
 import {UserApi} from "./user.api";
 import {UserRepo} from "./user.repo";
+import {UserActions} from "./redux/user.actions";
 
 @Injectable()
 export class UserCreator {
   instance: User;
-  constructor(private http: HttpClient, private dataCategories: DataCategories, private userApi: UserApi) {
+  constructor(private http: HttpClient, private dataCategories: DataCategories, private userApi: UserApi,
+    private userActions: UserActions) {
   }
 
   create(initial: object): User {
-    return new User(initial, this.http, this.dataCategories, this.userApi);
+    return new User(initial, this.http, this.dataCategories, this.userApi, this.userActions);
   }
 
   setInstance(user) {
@@ -30,7 +32,8 @@ export class User {
   name?: string;
   age?: number;
   dc: object;
-  constructor(initial: object, private http: HttpClient, private dataCategories: DataCategories, private userApi: UserApi) {
+  constructor(initial: object, private http: HttpClient, private dataCategories: DataCategories,
+              private userApi: UserApi, private userActions: UserActions) {
     _.assign(this, initial);
     this.fromApi();
   }
@@ -55,7 +58,7 @@ export class User {
   getDc(dcid) {
     this.dataCategories.getAll()
       .subscribe(dcs => {
-        this.dc = _.find(dcs, {name:'Purchase'});
+        this.userActions.setDc(this.id, _.find(dcs, {name:'Purchase'}))
       })
   }
 

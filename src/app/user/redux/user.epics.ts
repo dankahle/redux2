@@ -7,28 +7,27 @@ import {Http} from "@angular/http";
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/delay';
+import {UserRepo} from "../user.repo";
 
 @Injectable()
 export class UserEpics {
 
-  constructor(private http:Http, private userActions: UserActions) {
-
+  constructor(private userRepo: UserRepo, private userActions: UserActions) {
   }
 
   getEpics() {
     return combineEpics(
-      this.addUserEpic()
+      this.getUsersEpic()
     )
   }
 
-  addUserEpic() {
+  getUsersEpic() {
     return action$ => {
-      return action$.ofType(UserActions.SUBMIT)
-        .delay(1000)
-        .mergeMap(action => {
-          return this.http.get('http://www.mocky.io/v2/598920532700005f10aff03e');
+      return action$.ofType(UserActions.GET_USERS)
+        .switchMap(action => {
+          return this.userRepo.getAll()
         })
-        .map(response => this.formActions.submitSuccess(response));
+        .map(users => this.userActions.getUsersSuccess(users));
     }
 
   }

@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import {UserModule} from "./user/user.module";
 import {HttpClientModule} from "@angular/common/http";
+import {StoreModule} from "./store/store.module";
 
 @NgModule({
   declarations: [
@@ -11,6 +12,7 @@ import {HttpClientModule} from "@angular/common/http";
   ],
   imports: [
     BrowserModule,
+    StoreModule,
     UserModule
   ],
   bootstrap: [AppComponent]

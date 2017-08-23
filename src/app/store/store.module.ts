@@ -1,33 +1,26 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {combineEpics, createEpicMiddleware} from "redux-observable";
-import {EpicEpics} from "../epic/epics";
-import {DevToolsExtension, NgRedux} from "@angular-redux/store";
-import {APP_INITIAL_STATE, IAppState} from "./model";
-import {rootReducer} from "./reducer";
-import {FormEpics} from "../form/epic";
+import {DevToolsExtension, NgRedux, NgReduxModule} from "@angular-redux/store";
+import {APP_INITIAL_STATE, AppState} from "./store.model";
+import {rootReducer} from "./store.reducer";
+import {UserEpics} from "../user/redux/user.epics";
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    NgReduxModule
   ],
   declarations: []
 })
 export class StoreModule {
 
-  constructor(
-    ngRedux: NgRedux<IAppState>,
-    devTools: DevToolsExtension,
-    epicEpics: EpicEpics,
-    formEpics: FormEpics) {
+  constructor(ngRedux: NgRedux<AppState>, devTools: DevToolsExtension, userEpics: UserEpics) {
 
-    const storeEnhancers = devTools.isEnabled() ? // <- New
-      [ devTools.enhancer() ] : // <- New
-      []; // <- New
+    const storeEnhancers = devTools.isEnabled() ? [ devTools.enhancer() ] : [];
 
     var middleware = createEpicMiddleware(combineEpics(
-      epicEpics.getEpics(),
-      formEpics.getEpics()
+      userEpics.getEpics()
     ));
 
     ngRedux.configureStore(rootReducer, APP_INITIAL_STATE, [middleware], storeEnhancers);

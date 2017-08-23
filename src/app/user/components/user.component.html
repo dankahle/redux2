@@ -1,15 +1,14 @@
 
 users:<br>
-<div *ngFor="let user of users$|async">
+<div *ngFor="let user of userState.users">
   <div *ngIf="editingUser !== user">
     id: {{user.id}},
     name: {{user.name}},
     age: {{user.age}}
     <button (click)="ageUser(user)">age</button>
-    <button (click)="selectedUser = user">detail</button>
+    <button (click)="userActions.setUser(user)">detail</button>
     <button (click)="user.getDc()">get dc</button>
     <button (click)="editUser(user)">edit</button>
-    <button (click)="setInstance(user.id)">set instance</button>
   </div>
   <div *ngIf="editingUser === user">
     edit:
@@ -27,18 +26,11 @@ users:<br>
   <button (click)="addUser()">add</button>
 </div>
 <br>
-<div *ngIf="selectedUser as u">
+<div *ngIf="userState.user as u">
   detail:<br>
   id: {{u.id}},
   name: {{u.name}},
   age: {{u.age}}
   <span *ngIf="u.dc">dc: {{u.dc|json}}</span>
 </div>
-<div *ngIf="userCreator.instance as inst">
-  instance:<br>
-  id: {{inst.id}},
-  name: {{inst.name}},
-  age: {{inst.age}}
-  <span *ngIf="inst.dc">dc: {{inst.dc|json}}</span>
-</div>
-<pre>{{users$|async|json}}</pre>
+<pre>{{userState|json}}</pre>
