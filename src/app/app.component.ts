@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import {UserCreator} from "./user/user";
-import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-root',
@@ -11,3 +9,4 @@ export class AppComponent {
   title = 'app';
   constructor() {}
 }
+
