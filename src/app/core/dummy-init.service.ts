@@ -4,15 +4,13 @@ import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/delay';
 
 @Injectable()
-export class DataCategories {
+export class DummyInitService {
 
   constructor() { }
 
   getAll() {
-    return Observable.of([
-      {id: 1, name: 'Shipment'},
-      {id: 2, name: 'Purchase'},
-    ]);
+    return Observable.of('nothing')
+      .delay(2000);
   }
 
 }

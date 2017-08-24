@@ -1,6 +1,15 @@
 
 
 
+
+pass:
+* working on user router guard, then get detilas page done
+* add edit form validation
+* merge to redux branch and do in redux along with edit feature.
+
+
+
+
 redux:
 edit and save left
 getDc is hokey as it's all between user/reducer. Should be epic??

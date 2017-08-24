@@ -5,6 +5,7 @@ import {DataCategories} from "../core/data-categories.service";
 import {IUser} from "./user.model";
 import {Observable} from "rxjs/Observable";
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/delay';
 
 @Injectable()
 export class UserService {
@@ -43,8 +44,9 @@ export class UserService {
       .map(users => users.map(user => this.toUI(user)));
   }
 
-  getOne(id:number, setInstance: boolean): Observable<IUser> {
+  getOne(id:number, setInstance?: boolean): Observable<IUser> {
     return this.http.get<IUser>(this.prefix + '/api/users/' + id)
+      .delay(2000)
       .map(data => {
         const user = this.toUI(data);
         if (setInstance) {

@@ -4,11 +4,12 @@ import {Observable} from "rxjs/Observable";
 import {UserService} from "../user.service";
 import * as _ from 'lodash';
 import {IUser} from "../user.model";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'dk-user',
   templateUrl: './user.component.html',
-  styleUrls: ['./user.component.css']
+  styleUrls: ['./user.component.scss']
 })
 export class UserComponent {
   users$: Observable<IUser[]>;
@@ -16,7 +17,8 @@ export class UserComponent {
   form: IUser = <IUser>{};
   edit: IUser = <IUser>{};
   editingUser: IUser;
-  constructor(private userService: UserService) {
+
+  constructor(private userService: UserService, private route: ActivatedRoute, private router: Router) {
     this.refresh();
   }
 
@@ -55,4 +57,7 @@ export class UserComponent {
       .subscribe(x => x);
   }
 
+  showDetail(user: IUser) {
+    this.router.navigate([user.id], {relativeTo: this.route});
+  }
 }
