@@ -1,0 +1,34 @@
+
+<h4>add user</h4>
+
+<form name="form1" #form="ngForm" (ngSubmit)="prevent($event)">
+
+<div>
+  name: <input name="name" [(ngModel)]="formObj.name" #field #nameModel="ngModel" minlength="3" maxlength="10"
+               forbiddenName="dank" required (submit)="$event.preventDefault()">
+  <span *ngIf="nameModel.invalid && (nameModel.dirty || nameModel.touched)" class="error-text">
+    <span *ngIf="nameModel.errors.required">required</span>
+    <span *ngIf="nameModel.errors.minlength">must be at least 3 chars long</span>
+    <span *ngIf="nameModel.errors.maxlength">max lengh is 10 chars</span>
+    <span *ngIf="nameModel.errors.forbiddenName">name can't contain dank</span>
+  </span>
+</div>
+<div>
+  age: <input name="age" type="number" [(ngModel)]="formObj.age" #ageModel="ngModel" required min="20" max="60">
+  <span *ngIf="ageModel.invalid && (ageModel.dirty || ageModel.touched)" class="error-text">
+    <span *ngIf="ageModel.errors.required">required</span>
+    <span *ngIf="ageModel.errors.min">must be at least 20 years old</span>
+    <span *ngIf="ageModel.errors.max">can't be older than 60</span>
+  </span>
+</div>
+
+  <button (click)="cancel()">cancel</button>
+  <button type="submit" (click)="addUser()" [disabled]="form.invalid">add</button><br>
+</form>
+
+form1: {{form1}}<br>
+<pre>form: {{formObj|json}}</pre>
+<pre>name: {{nameModel.errors|json}}</pre>
+<pre>age: {{ageModel.errors|json}}</pre>
+
+<pre>form.valid: {{form.valid}}</pre>

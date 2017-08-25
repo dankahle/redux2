@@ -11,12 +11,20 @@ import {RouterModule, Routes} from "@angular/router";
 import {UserDetailComponent} from "./user-detail/user-detail.component";
 import {UserResolve} from "./user.resolve";
 import {InitializationGuard} from "../initialization.guard";
+import {AddUserComponent} from "./add-user/add-user.component";
+import {SharedModule} from "../shared/shared.module";
 
 export const userRoutes: Routes = [
   {
     path: 'user',
     component: UserComponent,
     canActivate: [InitializationGuard],
+    children: [
+      {
+        path: 'add',
+        component: AddUserComponent
+      }
+    ]
   },
   {
     path: 'user/:id',
@@ -35,10 +43,11 @@ export const userRoutes: Routes = [
     CoreModule,
     FormsModule,
     HttpModule,
-    RouterModule.forChild(userRoutes)
+    RouterModule.forChild(userRoutes),
+    SharedModule
   ],
   providers: [UserService, UserResolve],
-  declarations: [UserComponent, UserDetailComponent],
+  declarations: [UserComponent, UserDetailComponent, AddUserComponent],
   exports: [UserComponent, RouterModule],
 })
 export class UserModule { }

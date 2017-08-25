@@ -32,10 +32,6 @@ export class UserComponent {
       });
   }
 
-  ageUser(user) {
-    this.userService.incAge(user,5);
-  }
-
   editUser(user) {
     this.edit = _.clone(user);
     this.editingUser = user;
@@ -45,11 +41,6 @@ export class UserComponent {
     this.edit.age = Number(this.edit.age);
     this.userService.update(this.edit)
       .subscribe(user => this.refresh());
-  }
-
-  addUser() {
-    this.userService.add(this.form)
-      .subscribe(newUser => this.refresh());
   }
 
   setInstance(id) {

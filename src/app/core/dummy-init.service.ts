@@ -10,7 +10,7 @@ export class DummyInitService {
 
   getAll() {
     return Observable.of('nothing')
-      .delay(2000);
+      .delay(200);
   }
 
 }

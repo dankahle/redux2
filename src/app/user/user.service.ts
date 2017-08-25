@@ -20,23 +20,23 @@ export class UserService {
   }
 
   toUI(user) {
-    this.getDc(user);
+    this.addDc(user);
     return user;
   }
 
   toApi(user: IUser) {
+    return this.removePropertiesForApi(user);
+  }
+
+  addDc(user) {
+    return this.dataCategories.getAll()
+      .map(dcs => {
+        user.dc = _.find(dcs, {id: user.dcId}) || null;
+      });
+  }
+
+  removePropertiesForApi (user) {
     return _.omit(user, ['dc']);
-  }
-
-  incAge(user: IUser, inc:number) {
-    user.age += inc;
-  }
-
-  getDc(user) {
-    this.dataCategories.getAll()
-      .subscribe(dcs => {
-        user.dc = _.find(dcs, {name:'Purchase'});
-      })
   }
 
   getAll() {
@@ -46,7 +46,7 @@ export class UserService {
 
   getOne(id:number, setInstance?: boolean): Observable<IUser> {
     return this.http.get<IUser>(this.prefix + '/api/users/' + id)
-      .delay(2000)
+      .delay(200)
       .map(data => {
         const user = this.toUI(data);
         if (setInstance) {

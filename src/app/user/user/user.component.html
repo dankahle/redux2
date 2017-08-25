@@ -5,26 +5,22 @@
     id: {{user.id}},
     name: {{user.name}},
     age: {{user.age}}
-    <button (click)="ageUser(user)">age</button>
     <button (click)="showDetail(user)">detail</button>
-    <button (click)="user.getDc()">get dc</button>
     <button (click)="editUser(user)">edit</button>
-    <button (click)="setInstance(user.id)">set instance</button>
   </div>
   <div *ngIf="editingUser === user">
     edit:
-    name: <input [(ngModel)]="edit.name">
+    name: <input [(ngModel)]="edit.name" #>
+    <div *ngIf="">name required</div>
     age: <input [(ngModel)]="edit.age">
     <button (click)="editingUser = undefined">cancel</button>
     <button (click)="updateUser(edit)">save</button>
   </div>
 </div>
 <br>
-<div>
-  add:
-  name: <input [(ngModel)]="form.name">
-  age: <input [(ngModel)]="form.age">
-  <button (click)="addUser()">add</button>
-</div>
+<a routerLink="add">add</a><br>
 <br>
-<pre>{{users$|async|json}}</pre>
+<div><a href="javascript:void(0)" (click)="showJson = !showJson">toggle json</a></div>
+<pre *ngIf="showJson">{{users$|async|json}}</pre>
+
+<router-outlet></router-outlet>

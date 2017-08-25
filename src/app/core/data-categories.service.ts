@@ -10,8 +10,9 @@ export class DataCategories {
 
   getAll() {
     return Observable.of([
-      {id: 1, name: 'Shipment'},
-      {id: 2, name: 'Purchase'},
+      {id: 4, name: 'Shipment4'},
+      {id: 5, name: 'Shipment5'},
+      {id: 6, name: 'Shipment6'},
     ]);
   }
 
