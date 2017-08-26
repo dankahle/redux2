@@ -3,10 +3,12 @@
 
 
 pass:
-* working on user router guard, then get detilas page done
-* add edit form validation
-* merge to redux branch and do in redux along with edit feature.
+done with angular, now merge to redux and bang out that side
 
+rest of weekend:
+material comps you haven't done
+@angular/flex-layout
+material themeing?
 
 
 

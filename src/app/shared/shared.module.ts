@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
-import {ForbiddenNameValidator} from './forbidden-name.validator';
 import {NG_VALIDATORS} from "@angular/forms";
-import {MinValidator} from "./min.validator";
-import {MaxValidator} from "./max.validator";
+import {PageNotFoundComponent} from "./components/page-not-found/page-not-found.component";
+import {ForbiddenNameValidator} from "./validators/forbidden-name.validator";
+import {MinValidator} from "./validators/min.validator";
+import {MaxValidator} from "./validators/max.validator";
 
 @NgModule({
   imports: [

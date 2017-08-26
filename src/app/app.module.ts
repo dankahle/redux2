@@ -5,9 +5,7 @@ import {UserModule} from "./user/user.module";
 import {SharedModule} from "./shared/shared.module";
 import {RouterModule, Routes} from "@angular/router";
 import {InitializationGuard} from "./initialization.guard";
-import {PageNotFoundComponent} from './shared/page-not-found/page-not-found.component';
-import {UserService} from "./user/user.service";
-import {UserResolve} from "./user/user.resolve";
+import {PageNotFoundComponent} from './shared/components/page-not-found/page-not-found.component';
 
 const appRoutes: Routes = [
   { path: '',   redirectTo: '/user', pathMatch: 'full', canActivate: [InitializationGuard] },
