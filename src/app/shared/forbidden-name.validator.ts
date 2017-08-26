@@ -3,10 +3,9 @@
 import {Directive, Input} from "@angular/core";
 import {AbstractControl, NG_VALIDATORS, Validator, ValidatorFn, Validators} from "@angular/forms";
 
-export function forbiddenNameValidator(nameRe: RegExp): ValidatorFn {
+export function forbiddenNameValidator(name: string): ValidatorFn {
   return (control: AbstractControl): {[key: string]: any} => {
-    const forbidden = nameRe.test(control.value);
-    return forbidden ? {'forbiddenName': {value: control.value}} : null;
+    return control.value === name ? {'forbiddenName': {value: control.value}} : null;
   };
 }
 
@@ -23,7 +22,7 @@ export class ForbiddenNameValidator implements Validator {
 
 
   validate(control: AbstractControl): {[key: string]: any} {
-    return this.forbiddenName ? forbiddenNameValidator(new RegExp(this.forbiddenName, 'i'))(control)
+    return this.forbiddenName ? forbiddenNameValidator(this.forbiddenName)(control)
       : null;
   }
 }

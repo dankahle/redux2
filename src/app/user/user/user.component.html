@@ -7,10 +7,11 @@
     age: {{user.age}}
     <button (click)="showDetail(user)">detail</button>
     <button (click)="editUser(user)">edit</button>
+    <button (click)="deleteUser(user)">delete</button>
   </div>
   <div *ngIf="editingUser === user">
     edit:
-    name: <input [(ngModel)]="edit.name" #>
+    name: <input [(ngModel)]="edit.name">
     <div *ngIf="">name required</div>
     age: <input [(ngModel)]="edit.age">
     <button (click)="editingUser = undefined">cancel</button>
@@ -20,7 +21,8 @@
 <br>
 <a routerLink="add">add</a><br>
 <br>
+<router-outlet></router-outlet>
+<br>
 <div><a href="javascript:void(0)" (click)="showJson = !showJson">toggle json</a></div>
 <pre *ngIf="showJson">{{users$|async|json}}</pre>
 
-<router-outlet></router-outlet>

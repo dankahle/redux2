@@ -37,15 +37,15 @@ export class UserComponent {
     this.editingUser = user;
   }
 
+  deleteUser(user) {
+    this.userService.delete(user.id)
+      .subscribe(() => this.refresh());
+  }
+
   updateUser(user) {
     this.edit.age = Number(this.edit.age);
     this.userService.update(this.edit)
       .subscribe(user => this.refresh());
-  }
-
-  setInstance(id) {
-    this.userService.getOne(id, true)
-      .subscribe(x => x);
   }
 
   showDetail(user: IUser) {

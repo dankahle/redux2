@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {Router} from "@angular/router";
 import {UserService} from "../user.service";
 import {UserComponent} from "../user/user.component";
@@ -11,6 +11,7 @@ import {IUser} from "../user.model";
 })
 export class AddUserComponent {
   formObj: IUser = <IUser>{};
+  @ViewChild('myform') myform;
 
   constructor(private router: Router, private userService: UserService, private parent: UserComponent) { }
 
@@ -24,8 +25,9 @@ export class AddUserComponent {
     this.router.navigateByUrl('/user');
   }
 
-  prevent(e) {
+  // this never gets called, but would if not in a child route, i.e. works if you put the form in userComponent
+  // the complaint is that form isn't attached to document or something, then never calls its sumbit event, weird
+  submit(e) {
     e.preventDefault();
   }
-
 }

@@ -1,7 +1,7 @@
 
 <h4>add user</h4>
 
-<form name="form1" #form="ngForm" (ngSubmit)="prevent($event)">
+<form name="form1" #form="ngForm" (ngSubmit)="submit($event)">
 
 <div>
   name: <input name="name" [(ngModel)]="formObj.name" #field #nameModel="ngModel" minlength="3" maxlength="10"
@@ -22,13 +22,6 @@
   </span>
 </div>
 
-  <button (click)="cancel()">cancel</button>
-  <button type="submit" (click)="addUser()" [disabled]="form.invalid">add</button><br>
+  <button type="button" (click)="cancel()">cancel</button>
+  <button type="button" (click)="addUser()" [disabled]="form.invalid">add</button><br>
 </form>
-
-form1: {{form1}}<br>
-<pre>form: {{formObj|json}}</pre>
-<pre>name: {{nameModel.errors|json}}</pre>
-<pre>age: {{ageModel.errors|json}}</pre>
-
-<pre>form.valid: {{form.valid}}</pre>
