@@ -6,6 +6,7 @@ import {SharedModule} from "./shared/shared.module";
 import {RouterModule, Routes} from "@angular/router";
 import {InitializationGuard} from "./initialization.guard";
 import {PageNotFoundComponent} from './shared/components/page-not-found/page-not-found.component';
+import 'hammerjs';
 
 const appRoutes: Routes = [
   { path: '',   redirectTo: '/user', pathMatch: 'full', canActivate: [InitializationGuard] },

@@ -5,13 +5,15 @@ import {PageNotFoundComponent} from "./components/page-not-found/page-not-found.
 import {ForbiddenNameValidator} from "./validators/forbidden-name.validator";
 import {MinValidator} from "./validators/min.validator";
 import {MaxValidator} from "./validators/max.validator";
+import {MaterialIndexModule} from "./material-index/material-index.module";
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    MaterialIndexModule
   ],
   declarations: [PageNotFoundComponent, ForbiddenNameValidator, MinValidator, MaxValidator],
-  exports: [PageNotFoundComponent, ForbiddenNameValidator, MinValidator, MaxValidator],
+  exports: [PageNotFoundComponent, ForbiddenNameValidator, MinValidator, MaxValidator, MaterialIndexModule],
   providers: []
 })
 export class SharedModule { }

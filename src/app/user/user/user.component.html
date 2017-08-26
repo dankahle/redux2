@@ -5,17 +5,17 @@
     id: {{user.id}},
     name: {{user.name}},
     age: {{user.age}}
-    <button (click)="showDetail(user)">detail</button>
-    <button (click)="editUser(user)">edit</button>
-    <button (click)="deleteUser(user)">delete</button>
+    <button md-button (click)="showDetail(user)">detail</button>
+    <button md-button (click)="editUser(user)">edit</button>
+    <button md-button (click)="deleteUser(user)">delete</button>
   </div>
   <div *ngIf="editingUser === user">
     edit:
-    name: <input [(ngModel)]="edit.name">
+    <input mdInput [(ngModel)]="edit.name">
     <div *ngIf="">name required</div>
-    age: <input [(ngModel)]="edit.age">
-    <button (click)="editingUser = undefined">cancel</button>
-    <button (click)="updateUser(edit)">save</button>
+    <input mdInput [(ngModel)]="edit.age" placeholder="age">
+    <button md-button (click)="editingUser = undefined">cancel</button>
+    <button md-button (click)="updateUser(edit)">save</button>
   </div>
 </div>
 <br>
