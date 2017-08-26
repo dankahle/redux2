@@ -1,4 +1,3 @@
-
 import {Component} from "@angular/core";
 import {Observable} from "rxjs/Observable";
 import {UserService} from "../user.service";
@@ -12,7 +11,7 @@ import {ActivatedRoute, Router} from "@angular/router";
   styleUrls: ['./user.component.scss']
 })
 export class UserComponent {
-  users$: Observable<IUser[]>;
+  users: IUser[];
   selectedUser: IUser;
   form: IUser = <IUser>{};
   edit: IUser = <IUser>{};
@@ -23,12 +22,12 @@ export class UserComponent {
   }
 
   refresh() {
-    this.users$ = this.userService.getAll()
-      .map(users => {
+    this.userService.getAll()
+      .subscribe(users => {
         if (this.selectedUser) {
           this.selectedUser = _.find(users, {id: this.selectedUser.id});
         }
-        return users;
+        this.users = users;
       });
   }
 

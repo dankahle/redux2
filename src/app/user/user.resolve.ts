@@ -10,10 +10,10 @@ export class UserResolve implements Resolve<IUser> {
   constructor(private userService: UserService) {}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<IUser> {
-    console.log('user resolve start');
+    // console.log('user resolve start');
     return this.userService.getOne(route.params.id)
       .map(user => {
-        console.log('user resolve end');
+        // console.log('user resolve end');
         return user;
       })
   }
