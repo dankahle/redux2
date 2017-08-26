@@ -2,7 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {Router} from "@angular/router";
 import {UserService} from "../user.service";
 import {UserComponent} from "../user/user.component";
-import {IUser} from "../user.model";
+import {IUser} from "../redux/user.model";
 
 @Component({
   selector: 'dk-add-user',

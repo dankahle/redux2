@@ -1,9 +1,11 @@
 import {Component} from "@angular/core";
-import {Observable} from "rxjs/Observable";
 import {UserService} from "../user.service";
 import * as _ from 'lodash';
-import {IUser} from "../user.model";
+import {IUser, UserState} from "../redux/user.model";
 import {ActivatedRoute, Router} from "@angular/router";
+import {UserActions} from "../redux/user.actions";
+import {NgRedux} from "@angular-redux/store";
+import {AppState} from "../../store/store.model";
 
 @Component({
   selector: 'dk-user',
@@ -11,24 +13,20 @@ import {ActivatedRoute, Router} from "@angular/router";
   styleUrls: ['./user.component.scss']
 })
 export class UserComponent {
-  users: IUser[];
+  userState: UserState;
   selectedUser: IUser;
   form: IUser = <IUser>{};
   edit: IUser = <IUser>{};
   editingUser: IUser;
 
-  constructor(private userService: UserService, private route: ActivatedRoute, private router: Router) {
+  constructor(private userService: UserService, private route: ActivatedRoute, private router: Router,
+              protected userActions: UserActions, private ngRedux: NgRedux<AppState>) {
+    ngRedux.subscribe(() => this.userState = ngRedux.getState().userState);
     this.refresh();
   }
 
   refresh() {
-    this.userService.getAll()
-      .subscribe(users => {
-        if (this.selectedUser) {
-          this.selectedUser = _.find(users, {id: this.selectedUser.id});
-        }
-        this.users = users;
-      });
+    this.userActions.getUsers();
   }
 
   editUser(user) {

@@ -2,10 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {HttpClientModule} from "@angular/common/http";
 import {UserComponent} from "./user/user.component";
-import {AppModule} from "../app.module";
 import {CoreModule} from "../core/core.module";
 import {FormsModule} from "@angular/forms";
-import {HttpModule} from "@angular/http";
 import {UserService} from "./user.service";
 import {RouterModule, Routes} from "@angular/router";
 import {UserDetailComponent} from "./user-detail/user-detail.component";
@@ -13,6 +11,9 @@ import {UserResolve} from "./user.resolve";
 import {InitializationGuard} from "../initialization.guard";
 import {AddUserComponent} from "./add-user/add-user.component";
 import {SharedModule} from "../shared/shared.module";
+import {UserActions} from "./redux/user.actions";
+import {NgReduxModule} from "@angular-redux/store";
+import {UserEpics} from "./redux/user.epics";
 
 export const userRoutes: Routes = [
   {
@@ -35,10 +36,6 @@ export const userRoutes: Routes = [
     }
   }
 ];
-import {UserActions} from "./redux/user.actions";
-import {UserRepo} from "./user.repo";
-import {NgReduxModule} from "@angular-redux/store";
-import {UserEpics} from "./redux/user.epics";
 
 @NgModule({
   imports: [
@@ -46,12 +43,11 @@ import {UserEpics} from "./redux/user.epics";
     HttpClientModule,
     CoreModule,
     FormsModule,
-    NgReduxModule
+    NgReduxModule,
     RouterModule.forChild(userRoutes),
     SharedModule
   ],
-  exports: [UserComponent],
-  providers: [UserService, UserResolve, UserRepo, UserActions, UserEpics],
+  providers: [UserService, UserResolve, UserActions, UserEpics],
   declarations: [UserComponent, UserDetailComponent, AddUserComponent],
   exports: [UserComponent, RouterModule],
 })

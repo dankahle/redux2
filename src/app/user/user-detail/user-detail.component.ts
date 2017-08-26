@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
-import {IUser} from "../user.model";
+import {IUser} from "../redux/user.model";
 import {Observable} from "rxjs/Observable";
 
 @Component({

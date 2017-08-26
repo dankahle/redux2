@@ -2,7 +2,7 @@ import {HttpClient, HttpParams} from "@angular/common/http";
 import {Injectable} from "@angular/core";
 import * as _ from 'lodash';
 import {DataCategories} from "../core/services/data-categories.service";
-import {IUser} from "./user.model";
+import {IUser} from "./redux/user.model";
 import {Observable} from "rxjs/Observable";
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/delay';

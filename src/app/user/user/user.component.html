@@ -4,7 +4,7 @@
 <button md-button (click)="sendError('json')">json error</button>
 <button md-button (click)="sendError('500')">server error</button>
 <button md-button (click)="sendError('404')">404 error</button><br><br>
-<div *ngFor="let user of users">
+<div *ngFor="let user of userState.users">
   <div *ngIf="editingUser !== user">
     id: {{user.id}},
     name: {{user.name}},
@@ -28,5 +28,5 @@
 <router-outlet></router-outlet>
 <br>
 <div><a href="javascript:void(0)" (click)="showJson = !showJson">toggle json</a></div>
-<pre *ngIf="showJson">{{users|json}}</pre>
+<pre *ngIf="showJson">{{userState.users|json}}</pre>
 

@@ -1,6 +1,5 @@
 import {UserActions} from "./user.actions";
-import {UserState} from "../user.state";
-import {USER_STATE_INITIAL} from "./user.model";
+import {UserState, USER_STATE_INITIAL} from "./user.model";
 import * as _ from 'lodash';
 
 export function userReducer(state: UserState = USER_STATE_INITIAL, action) {
@@ -9,6 +8,7 @@ export function userReducer(state: UserState = USER_STATE_INITIAL, action) {
       return {...state, users: action.payload};
     case UserActions.SET_USER:
       return {...state, user: action.payload};
+/*
     case UserActions.SET_DC:
     {
       let newObj;
@@ -29,6 +29,7 @@ export function userReducer(state: UserState = USER_STATE_INITIAL, action) {
       }
       return {...state, ...newObj};
     }
+*/
     default:
       return state
   }
