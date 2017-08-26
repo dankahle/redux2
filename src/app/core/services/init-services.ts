@@ -8,7 +8,9 @@ import 'rxjs/add/operator/do';
 export class Init1 {
   get() {
     return Observable.of('one')
-      .do(() => console.log('init1'))
+      .do(() => {
+        // return console.log('init1');
+      })
       .delay(200);
   }
 }
@@ -17,7 +19,9 @@ export class Init1 {
 export class Init2 {
   get() {
     return Observable.of('two')
-      .do(() => console.log('init2'))
+      .do(() => {
+        // return console.log('init2');
+      })
       .delay(200);
   }
 }
@@ -26,7 +30,9 @@ export class Init2 {
 export class Init3 {
   get() {
     return Observable.of('three')
-      .do(() => console.log('init3'))
+      .do(() => {
+        // return console.log('init3');
+      })
       .delay(200);
   }
 }
@@ -35,7 +41,9 @@ export class Init3 {
 export class Init4 {
   get() {
     return Observable.of('four')
-      .do(() => console.log('init4'))
+      .do(() => {
+        // return console.log('init4');
+      })
       .delay(200);
   }
 }
@@ -44,7 +52,9 @@ export class Init4 {
 export class Init5 {
   get() {
     return Observable.of('five')
-      .do(() => console.log('init5'))
+      .do(() => {
+        // return console.log('init5');
+      })
       .delay(200);
   }
 }

@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
-import {MdButtonModule} from "@angular/material";
+import {MdButtonModule, MdDialogModule, MdProgressBarModule} from "@angular/material";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
-  imports: [BrowserAnimationsModule, MdButtonModule],
-  exports: [BrowserAnimationsModule, MdButtonModule],
+  imports: [BrowserAnimationsModule, MdButtonModule, MdProgressBarModule, MdDialogModule],
+  exports: [BrowserAnimationsModule, MdButtonModule, MdProgressBarModule, MdDialogModule],
 })
 export class MaterialIndexModule { }

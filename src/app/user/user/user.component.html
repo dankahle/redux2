@@ -1,5 +1,9 @@
 
 <h4>users</h4>
+<button md-button (click)="sendError('normal')">normal error</button>
+<button md-button (click)="sendError('json')">json error</button>
+<button md-button (click)="sendError('500')">server error</button>
+<button md-button (click)="sendError('404')">404 error</button><br><br>
 <div *ngFor="let user of users$|async">
   <div *ngIf="editingUser !== user">
     id: {{user.id}},

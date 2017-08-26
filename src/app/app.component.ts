@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {ProgressService} from "./core/services/progress.service";
 
 @Component({
   selector: 'app-root',
@@ -6,7 +7,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'app';
-  constructor() {}
+  _toggleProgress = false;
+
+  constructor(private progressService: ProgressService) {}
+
+  toggleProgress() {
+    this._toggleProgress = !this._toggleProgress;
+    this.progressService.showProgressBar(this._toggleProgress);
+  }
 }
 

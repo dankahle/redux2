@@ -51,4 +51,9 @@ export class UserComponent {
   showDetail(user: IUser) {
     this.router.navigate([user.id], {relativeTo: this.route});
   }
+
+  sendError(num) {
+    this.userService.getOne(num).subscribe(x => x);
+  }
+
 }

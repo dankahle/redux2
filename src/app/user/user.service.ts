@@ -1,7 +1,7 @@
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {Injectable} from "@angular/core";
 import * as _ from 'lodash';
-import {DataCategories} from "../core/data-categories.service";
+import {DataCategories} from "../core/services/data-categories.service";
 import {IUser} from "./user.model";
 import {Observable} from "rxjs/Observable";
 import 'rxjs/add/operator/map';
@@ -40,7 +40,8 @@ export class UserService {
   }
 
   getAll() {
-    return <Observable<IUser[]>>this.http.get<IUser[]>(this.prefix + '/api/users')
+    const params = new HttpParams().set('hideSpinner', 'true');
+    return <Observable<IUser[]>>this.http.get<IUser[]>(this.prefix + '/api/users', {params: params})
       .map(users => users.map(user => this.toUI(user)));
   }
 

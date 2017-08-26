@@ -3,7 +3,7 @@ import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot} from '@angular
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/forkJoin';
 import 'rxjs/add/operator/mergeMap';
-import {Init1, Init2, Init3, Init4, Init5} from "./core/init-services";
+import {Init1, Init2, Init3, Init4, Init5} from "./core/services/init-services";
 import {merge} from "rxjs/observable/merge";
 
 @Injectable()
@@ -33,7 +33,7 @@ export class InitializationGuard implements CanActivate {
       if (this.initialized) {
         return true;
       }
-      console.log('init guard start');
+      // console.log('init guard start');
       return Observable.forkJoin(this.init1.get(), this.init2.get())
         .mergeMap(x => {
           return Observable.forkJoin(this.init3.get(), this.init4.get());
@@ -42,7 +42,7 @@ export class InitializationGuard implements CanActivate {
           return Observable.forkJoin(this.init5.get());
         })
         .map(x => {
-          console.log('init guard end');
+          // console.log('init guard end');
           this.initialized = true;
           return true;
         });
