@@ -1,9 +1,9 @@
 var _ = require('lodash');
 
 var users = [
-  {id: 1, name: 'dank', age: 50},
-  {id: 2, name: 'carl', age: 60},
-  {id: 3, name: 'jim', age: 40},
+  {id: 1, name: 'dank', age: 50, dcId: 4},
+  {id: 2, name: 'carl', age: 60, dcId: 5},
+  {id: 3, name: 'jim', age: 40, dcId: 6},
 ]
 
 exports.getAll = function() {

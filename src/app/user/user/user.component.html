@@ -1,0 +1,32 @@
+
+<h4>users</h4>
+<button md-button (click)="sendError('normal')">normal error</button>
+<button md-button (click)="sendError('json')">json error</button>
+<button md-button (click)="sendError('500')">server error</button>
+<button md-button (click)="sendError('404')">404 error</button><br><br>
+<div *ngFor="let user of users">
+  <div *ngIf="editingUser !== user">
+    id: {{user.id}},
+    name: {{user.name}},
+    age: {{user.age}}
+    <button md-button (click)="showDetail(user)">detail</button>
+    <button md-button (click)="editUser(user)">edit</button>
+    <button md-button (click)="deleteUser(user)">delete</button>
+  </div>
+  <div *ngIf="editingUser === user">
+    edit:
+    <input mdInput [(ngModel)]="edit.name">
+    <div *ngIf="">name required</div>
+    <input mdInput [(ngModel)]="edit.age" placeholder="age">
+    <button md-button (click)="editingUser = undefined">cancel</button>
+    <button md-button (click)="updateUser(edit)">save</button>
+  </div>
+</div>
+<br>
+<a routerLink="add">add</a><br>
+<br>
+<router-outlet></router-outlet>
+<br>
+<div><a href="javascript:void(0)" (click)="showJson = !showJson">toggle json</a></div>
+<pre *ngIf="showJson">{{users|json}}</pre>
+

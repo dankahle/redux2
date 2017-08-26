@@ -1,13 +1,19 @@
 import { Component } from '@angular/core';
-import {UserCreator} from "./user/user";
-import {HttpClient} from "@angular/common/http";
+import {ProgressService} from "./core/services/progress.service";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'app';
-  constructor() {}
+  _toggleProgress = false;
+
+  constructor(private progressService: ProgressService) {}
+
+  toggleProgress() {
+    this._toggleProgress = !this._toggleProgress;
+    this.progressService.showProgressBar(this._toggleProgress);
+  }
 }
+

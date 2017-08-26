@@ -1,7 +1,22 @@
 
 
 
+
+pass:
+done with angular, now merge to redux and bang out that side
+
+rest of weekend:
+material comps you haven't done
+@angular/flex-layout
+material themeing?
+
+
+
+
+
 redux:
+redux-freeze?
+immutability?
 edit and save left
 getDc is hokey as it's all between user/reducer. Should be epic??
 make assessment here? at least stop and look at it before routing and filter.
@@ -19,8 +34,8 @@ then, make your assessment, or maybe make
 
 
 angular:
-you're struggling with the thickness of that User object, and leaning more towards a coordinator, and you still like the shape shifting of redux, so look for a way you can have a api and ui shape of it
 
-
+interceptor:
+https://netbasal.com/a-taste-from-the-new-angular-http-client-38fcdc6b359b
 
 

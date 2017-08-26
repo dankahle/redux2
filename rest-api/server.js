@@ -18,7 +18,9 @@ app.use('/api/users', userRouter);
 app.use(function (req, res) {
   res.status(404).send('Oops, file not found')
 })
-app.use(apiErrorHandler())
+app.use(function(err, req, res, next) {
+  res.status(err.status || 500).send(err);
+});
 app.listen(3005, function() {
   console.log('listening on 3005');
 });
