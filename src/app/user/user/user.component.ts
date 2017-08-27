@@ -2,8 +2,8 @@ import {Component} from "@angular/core";
 import {Observable} from "rxjs/Observable";
 import {UserService} from "../user.service";
 import * as _ from 'lodash';
-import {IUser} from "../user.model";
 import {ActivatedRoute, Router} from "@angular/router";
+import {IUser} from "../user.model";
 
 @Component({
   selector: 'dk-user',
@@ -49,6 +49,17 @@ export class UserComponent {
 
   showDetail(user: IUser) {
     this.router.navigate([user.id], {relativeTo: this.route});
+  }
+
+  toggleAdd(event) {
+    event.preventDefault();
+    if (this.route.snapshot.children.length &&
+      this.route.snapshot.children[0].url.length &&
+      this.route.snapshot.children[0].url[0].path === 'add') {
+      this.router.navigateByUrl('/user');
+    } else {
+      this.router.navigateByUrl('/user/add');
+    }
   }
 
   sendError(num) {

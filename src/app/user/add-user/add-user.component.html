@@ -4,8 +4,10 @@
 <form name="form1" #form="ngForm" (ngSubmit)="submit($event)">
 
 <div>
-  <input name="name" [(ngModel)]="formObj.name" #field #nameModel="ngModel" minlength="3" maxlength="10" placeholder="name"
+  <md-input-container>
+    <input mdInput name="name" [(ngModel)]="formObj.name" #field #nameModel="ngModel" minlength="3" maxlength="10" placeholder="name"
                forbiddenName="dank" required (submit)="$event.preventDefault()">
+  </md-input-container>
   <span *ngIf="nameModel.invalid && (nameModel.dirty || nameModel.touched)" class="error-text">
     <span *ngIf="nameModel.errors.required">required</span>
     <span *ngIf="nameModel.errors.minlength">must be at least 3 chars long</span>
@@ -14,7 +16,9 @@
   </span>
 </div>
 <div>
-  <input name="age" [(ngModel)]="formObj.age" #ageModel="ngModel" required min="20" max="60" placeholder="age" pattern="\d+">
+  <md-input-container>
+    <input mdInput name="age" [(ngModel)]="formObj.age" #ageModel="ngModel" required min="20" max="60" placeholder="age" pattern="\d+">
+  </md-input-container>
   <span *ngIf="ageModel.invalid && (ageModel.dirty || ageModel.touched)" class="error-text">
     <span *ngIf="ageModel.errors.required">required</span>
     <span *ngIf="ageModel.errors.pattern">numbers only</span>
