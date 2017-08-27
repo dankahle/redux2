@@ -3,7 +3,29 @@
 
 
 pass:
-done with angular, now merge to redux and bang out that side
+converting latest angular to redux
+
+todo:
+* userState >> resolve? If so, then how to refresh? I.e. if you need a thing before a state, but also need it in the state,
+  do you bother to do it before the state?
+
+* detail
+* add
+* edit
+* router path and params in state
+* interceptor
+* error modal
+* progress bar
+* initialization
+
+you know everything needs to be redone now right? This is good for you. I.e. it was straight forward and easy to do in angular.
+Today's trials will help you make your decision. If today goes like crap, then you maybe have your answer, cause if this goes like crap...
+after it's already been implemented in angular, that doesn't say much for doing things in redux. The reverse of that though is: if this goes
+easy, that doesn't necessarily mean it woudl have been easy from scratch, i.e. it's a lot easier to take a working angular app and convert it
+to redux than to do redux from scratch I bet, as it's already implemented, just needs to be transformed.
+
+
+
 
 rest of weekend:
 material comps you haven't done
@@ -14,28 +36,6 @@ material themeing?
 
 
 
-redux:
+other stuff:
 redux-freeze?
 immutability?
-edit and save left
-getDc is hokey as it's all between user/reducer. Should be epic??
-make assessment here? at least stop and look at it before routing and filter.
-you want to get a bit more in userState so you can see how component properties will possibly move out of component and into userState? That's what userState is there for.
-
-maybe state syoudl be: {users, user} instead and with routing move to a detail sub route then you have usersState and userState and they have users and user properties plus any additional metadata
-
-todo:
-routing
-filter with query param, i.e. do it on server or pretend to
-or do it on component?
-
-
-then, make your assessment, or maybe make
-
-
-angular:
-
-interceptor:
-https://netbasal.com/a-taste-from-the-new-angular-http-client-38fcdc6b359b
-
-
