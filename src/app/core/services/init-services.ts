@@ -6,56 +6,56 @@ import 'rxjs/add/operator/do';
 
 @Injectable()
 export class Init1 {
-  get() {
+  getVal() {
     return Observable.of('one')
       .do(() => {
         // return console.log('init1');
       })
-      .delay(200);
+      .delay(100);
   }
 }
 
 @Injectable()
 export class Init2 {
-  get() {
+  getVal() {
     return Observable.of('two')
       .do(() => {
         // return console.log('init2');
       })
-      .delay(200);
+      .delay(100);
   }
 }
 
 @Injectable()
 export class Init3 {
-  get() {
+  getVal() {
     return Observable.of('three')
       .do(() => {
         // return console.log('init3');
       })
-      .delay(200);
+      .delay(100);
   }
 }
 
 @Injectable()
 export class Init4 {
-  get() {
+  getVal() {
     return Observable.of('four')
       .do(() => {
         // return console.log('init4');
       })
-      .delay(200);
+      .delay(100);
   }
 }
 
 @Injectable()
 export class Init5 {
-  get() {
+  getVal() {
     return Observable.of('five')
       .do(() => {
         // return console.log('init5');
       })
-      .delay(200);
+      .delay(100);
   }
 }
 

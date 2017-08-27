@@ -7,12 +7,14 @@ import {HTTP_INTERCEPTORS} from "@angular/common/http";
 import {SpinnerInterceptor} from "./interceptors/spinner.interceptor";
 import {TimingInterceptor} from "./interceptors/timing.interceptor";
 import {ErrorInterceptor} from "./interceptors/error.interceptor";
+import {InitializeEpics} from "./initialize/initialize.epics";
+import {InitializeActions} from "./initialize/initialize.actions";
 
 @NgModule({
   imports: [
     CommonModule
   ],
-  providers: [DataCategories, Init1, Init2, Init3, Init4, Init5, ProgressService,
+  providers: [DataCategories, Init1, Init2, Init3, Init4, Init5, ProgressService, InitializeEpics, InitializeActions,
     {provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: TimingInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}

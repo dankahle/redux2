@@ -5,7 +5,7 @@ import {IUser, UserState} from "../redux/user.model";
 import {ActivatedRoute, Router} from "@angular/router";
 import {UserActions} from "../redux/user.actions";
 import {NgRedux} from "@angular-redux/store";
-import {AppState} from "../../store/store.model";
+import {IAppState} from "../../store/store.model";
 
 @Component({
   selector: 'dk-user',
@@ -20,7 +20,7 @@ export class UserComponent {
   editingUser: IUser;
 
   constructor(private userService: UserService, private route: ActivatedRoute, private router: Router,
-              protected userActions: UserActions, private ngRedux: NgRedux<AppState>) {
+              protected userActions: UserActions, private ngRedux: NgRedux<IAppState>) {
     ngRedux.subscribe(() => this.userState = ngRedux.getState().userState);
     this.refresh();
   }

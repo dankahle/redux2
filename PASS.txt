@@ -7,7 +7,9 @@ converting latest angular to redux
 
 todo:
 * userState >> resolve? If so, then how to refresh? I.e. if you need a thing before a state, but also need it in the state,
-  do you bother to do it before the state?
+  do you bother to do it before the state? yeah, why not, cleaner start and then other changes wont' be noticeale, it's that missing hole in the page that all a sudden gets fill, that you want to avoid. PRoalem is: how to wait for it after the value is already ther. I.e. you'd clear finished flag, then start right? Oh... isn't dispatch >> reducer sync? there you go, jsut dispatch and same start event will clear finished and start epic
+
+
 
 * detail
 * add

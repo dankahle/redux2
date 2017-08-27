@@ -5,18 +5,31 @@ import 'rxjs/add/observable/forkJoin';
 import 'rxjs/add/operator/mergeMap';
 import {Init1, Init2, Init3, Init4, Init5} from "./core/services/init-services";
 import {merge} from "rxjs/observable/merge";
+import {IInitialize} from "./core/initialize/initialize.model";
+import {NgRedux, select} from "@angular-redux/store";
+import {InitializeActions} from "./core/initialize/initialize.actions";
+import {IAppState} from "./store/store.model";
+import {Subject} from "rxjs/Subject";
 
 @Injectable()
 export class InitializationGuard implements CanActivate {
-  initialized = false;
+  initialize: IInitialize;
+  @select('initialize') initialize$: Observable<IInitialize>;
+  subject: Subject<boolean>;
 
   constructor(
-    private init1: Init1,
-    private init2: Init2,
-    private init3: Init3,
-    private init4: Init4,
-    private init5: Init5,
-    ) {
+    private initializeActions: InitializeActions, ngRedux: NgRedux<IAppState>) {
+    this.initialize$.subscribe(initialize => {
+      this.initialize = initialize;
+
+      if (this.subject) {
+        if (this.initialize.success) {
+          this.subject.next(true);
+        } else if (this.initialize.failure) {
+          this.subject.next(false);
+        }
+      }
+    });
   }
 
   canActivate(next: ActivatedRouteSnapshot,
@@ -30,22 +43,12 @@ export class InitializationGuard implements CanActivate {
   }
 
     init() {
-      if (this.initialized) {
-        return true;
+      if (this.initialize.initializing || this.initialize.initialized) {
+        return false;
       }
-      // console.log('init guard start');
-      return Observable.forkJoin(this.init1.get(), this.init2.get())
-        .mergeMap(x => {
-          return Observable.forkJoin(this.init3.get(), this.init4.get());
-        })
-        .mergeMap(x => {
-          return Observable.forkJoin(this.init5.get());
-        })
-        .map(x => {
-          // console.log('init guard end');
-          this.initialized = true;
-          return true;
-        });
+      this.initializeActions.initialize();
+      this.subject = new Subject<boolean>()
+      return this.subject;
     }
 
 }
