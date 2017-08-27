@@ -45,7 +45,7 @@ router.get('/:id', function (req, res, next) {
           message: 'User not found.'
         });
       }
-  }, 1000)
+  },1000)
 })
 
 router.post('/', function (req, res) {

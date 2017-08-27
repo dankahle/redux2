@@ -6,10 +6,11 @@ export interface IUser {
   dc?: object;
 }
 
-export class UserState {
+export class IUserState {
+  loadedUser: boolean;
   users: IUser[];
   user: IUser;
 }
 
-export const USER_STATE_INITIAL: UserState = <UserState>{
+export const USER_STATE_INITIAL: IUserState = <IUserState>{
 }

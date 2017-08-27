@@ -1,7 +1,7 @@
 import {Component} from "@angular/core";
 import {UserService} from "../user.service";
 import * as _ from 'lodash';
-import {IUser, UserState} from "../redux/user.model";
+import {IUser, IUserState} from "../redux/user.model";
 import {ActivatedRoute, Router} from "@angular/router";
 import {UserActions} from "../redux/user.actions";
 import {NgRedux} from "@angular-redux/store";
@@ -13,7 +13,7 @@ import {IAppState} from "../../store/store.model";
   styleUrls: ['./user.component.scss']
 })
 export class UserComponent {
-  userState: UserState;
+  userState: IUserState;
   selectedUser: IUser;
   form: IUser = <IUser>{};
   edit: IUser = <IUser>{};

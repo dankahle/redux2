@@ -43,7 +43,9 @@ export class InitializationGuard implements CanActivate {
   }
 
     init() {
-      if (this.initialize.initializing || this.initialize.initialized) {
+      if (this.initialize.initialized) {
+        return true;
+      } else if (this.initialize.initializing) {
         return false;
       }
       this.initializeActions.initialize();
