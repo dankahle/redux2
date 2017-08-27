@@ -7,7 +7,7 @@
   <br><br>
 </div>
 <h4>user list</h4>
-<div *ngFor="let user of users">
+<div *ngFor="let user of userState.users">
   <div *ngIf="editingUser !== user">
     id: {{user.id}},
     name: {{user.name}},

@@ -1,6 +1,5 @@
 
-import {USER_STATE_INITIAL} from "../user/redux/user.model";
-import {UserState} from "../user/user.state";
+import {UserState, USER_STATE_INITIAL} from "../user/redux/user.model";
 
 export interface AppState {
   userState: UserState;
