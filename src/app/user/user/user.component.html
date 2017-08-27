@@ -1,10 +1,13 @@
-
-<h4>users</h4>
-<button md-button (click)="sendError('normal')">normal error</button>
-<button md-button (click)="sendError('json')">json error</button>
-<button md-button (click)="sendError('500')">server error</button>
-<button md-button (click)="sendError('404')">404 error</button><br><br>
-<div *ngFor="let user of userState.users">
+<a href="javascript:void(0)" (click)="showErrors = !showErrors">toggle errors</a><br><br>
+<div *ngIf="showErrors">
+  <button md-button (click)="sendError('normal')">normal error</button>
+  <button md-button (click)="sendError('json')">json error</button>
+  <button md-button (click)="sendError('500')">server error</button>
+  <button md-button (click)="sendError('404')">404 error</button>
+  <br><br>
+</div>
+<h4>user list</h4>
+<div *ngFor="let user of users">
   <div *ngIf="editingUser !== user">
     id: {{user.id}},
     name: {{user.name}},
@@ -15,15 +18,19 @@
   </div>
   <div *ngIf="editingUser === user">
     edit:
-    <input mdInput [(ngModel)]="edit.name">
+    <md-input-container>
+      <input mdInput [(ngModel)]="edit.name">
+    </md-input-container>
     <div *ngIf="">name required</div>
-    <input mdInput [(ngModel)]="edit.age" placeholder="age">
+    <md-input-container>
+      <input mdInput [(ngModel)]="edit.age" placeholder="age">
+    </md-input-container>
     <button md-button (click)="editingUser = undefined">cancel</button>
     <button md-button (click)="updateUser(edit)">save</button>
   </div>
 </div>
 <br>
-<a routerLink="add">add</a><br>
+<a href (click)="toggleAdd($event)">add</a><br>
 <br>
 <router-outlet></router-outlet>
 <br>

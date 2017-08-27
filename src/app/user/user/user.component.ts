@@ -49,6 +49,17 @@ export class UserComponent {
     this.router.navigate([user.id], {relativeTo: this.route});
   }
 
+  toggleAdd(event) {
+    event.preventDefault();
+    if (this.route.snapshot.children.length &&
+      this.route.snapshot.children[0].url.length &&
+      this.route.snapshot.children[0].url[0].path === 'add') {
+      this.router.navigateByUrl('/user');
+    } else {
+      this.router.navigateByUrl('/user/add');
+    }
+  }
+
   sendError(num) {
     this.userService.getOne(num).subscribe(x => x);
   }
