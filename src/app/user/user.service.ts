@@ -40,7 +40,7 @@ export class UserService {
   }
 
   getAll() {
-    const params = new HttpParams().set('hideSpinner', 'true');
+    const params = new HttpParams().set('hideSpinner', 'false');
     return <Observable<IUser[]>>this.http.get<IUser[]>(this.prefix + '/api/users', {params: params})
       .map(users => users.map(user => this.toUI(user)));
   }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {ProgressService} from "./core/services/progress.service";
+import {InterceptorActions} from "./core/interceptors/redux/interceptor.actions";
 
 @Component({
   selector: 'app-root',
@@ -9,11 +9,7 @@ import {ProgressService} from "./core/services/progress.service";
 export class AppComponent {
   _toggleProgress = false;
 
-  constructor(private progressService: ProgressService) {}
+  constructor() {}
 
-  toggleProgress() {
-    this._toggleProgress = !this._toggleProgress;
-    this.progressService.showProgressBar(this._toggleProgress);
-  }
 }
 

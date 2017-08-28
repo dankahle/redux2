@@ -7,14 +7,14 @@ import {
   HttpResponse
 } from "@angular/common/http";
 import {Observable} from "rxjs/Observable";
-import {ProgressService} from "../services/progress.service";
 import {MdDialog, MdDialogConfig} from "@angular/material";
 import {ErrorModalComponent} from "../../shared/components/error-modal/error-modal.component";
+import {InterceptorActions} from "./redux/interceptor.actions";
 
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
-  constructor(private progressService: ProgressService, public dialog: MdDialog) {}
+  constructor(private interceptorActions: InterceptorActions, public dialog: MdDialog) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next
@@ -22,7 +22,7 @@ export class ErrorInterceptor implements HttpInterceptor {
       .do(event => {
       })
       .catch(err => {
-        this.progressService.hideProgressBar();
+        this.interceptorActions.hideProgress();
         const config = <MdDialogConfig> {
           data: {error: err.error},
           width: '300px'
