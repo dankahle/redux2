@@ -16,9 +16,11 @@ export class UserEpics {
 
   getEpics() {
     return combineEpics(
+      this.getUsersEpic(),
       this.getUserEpic(),
       this.addUserEpic(),
-      this.getUsersEpic()
+      this.updateUserEpic(),
+      this.deleteUserEpic()
     )
   }
 
@@ -39,6 +41,26 @@ export class UserEpics {
           return this.userService.add(action.payload)
         })
         .map(user => this.userActions.addUserSuccess(user));
+    }
+  }
+
+  updateUserEpic() {
+    return action$ => {
+      return action$.ofType(UserActions.UPDATE_USER)
+        .switchMap(action => {
+          return this.userService.update(action.payload)
+        })
+        .map(user => this.userActions.updateUserSuccess(user));
+    }
+  }
+
+  deleteUserEpic() {
+    return action$ => {
+      return action$.ofType(UserActions.DELETE_USER)
+        .switchMap(action => {
+          return this.userService.delete(action.meta.id)
+        })
+        .map(user => this.userActions.deleteUserSuccess(user));
     }
   }
 

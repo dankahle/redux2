@@ -4,8 +4,9 @@ import * as _ from 'lodash';
 import {IUser, IUserState} from "../redux/user.model";
 import {ActivatedRoute, Router} from "@angular/router";
 import {UserActions} from "../redux/user.actions";
-import {NgRedux} from "@angular-redux/store";
+import {NgRedux, select} from "@angular-redux/store";
 import {IAppState} from "../../store/store.model";
+import {Observable} from "rxjs/Observable";
 
 @Component({
   selector: 'dk-user',
@@ -14,14 +15,17 @@ import {IAppState} from "../../store/store.model";
 })
 export class UserComponent {
   userState: IUserState;
+  @select('userState') userState$: Observable<IUserState>;
+  @select(['userState', 'updatedUser']) updatedUser$: Observable<boolean>;
+  @select(['userState', 'deletedUser']) deletedUser$: Observable<boolean>;
   selectedUser: IUser;
   form: IUser = <IUser>{};
   edit: IUser = <IUser>{};
   editingUser: IUser;
 
   constructor(private userService: UserService, private route: ActivatedRoute, private router: Router,
-              protected userActions: UserActions, private ngRedux: NgRedux<IAppState>) {
-    ngRedux.subscribe(() => this.userState = ngRedux.getState().userState);
+              protected userActions: UserActions) {
+    this.userState$.subscribe(userState => this.userState = userState);
     this.refresh();
   }
 
@@ -35,14 +39,26 @@ export class UserComponent {
   }
 
   deleteUser(user) {
-    this.userService.delete(user.id)
-      .subscribe(() => this.refresh());
+    this.userActions.deleteUser(user.id);
+    const sub = this.deletedUser$
+      .subscribe(deletedUser => {
+        if (deletedUser) {
+          sub.unsubscribe();
+          this.refresh();
+        }
+      })
   }
 
   updateUser(user) {
     this.edit.age = Number(this.edit.age);
-    this.userService.update(this.edit)
-      .subscribe(user => this.refresh());
+    this.userActions.updateUser(this.edit);
+    const sub = this.updatedUser$
+      .subscribe(updatedUser => {
+        if (updatedUser) {
+          sub.unsubscribe();
+          this.refresh();
+        }
+      })
   }
 
   showDetail(user: IUser) {

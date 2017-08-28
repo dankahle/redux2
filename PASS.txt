@@ -3,25 +3,8 @@
 
 
 pass:
-redux:
-do rest of interceptors, then??
 
-* interceptors
-* detail (page too, not just resolve)
-* add
-* edit
 * router path and params in state
-* interceptor
-* error modal
-* progress bar
-* initialization
-
-you know everything needs to be redone now right? This is good for you. I.e. it was straight forward and easy to do in angular.
-Today's trials will help you make your decision. If today goes like crap, then you maybe have your answer, cause if this goes like crap...
-after it's already been implemented in angular, that doesn't say much for doing things in redux. The reverse of that though is: if this goes
-easy, that doesn't necessarily mean it woudl have been easy from scratch, i.e. it's a lot easier to take a working angular app and convert it
-to redux than to do redux from scratch I bet, as it's already implemented, just needs to be transformed.
-
 
 
 
@@ -29,10 +12,6 @@ rest of weekend:
 material comps you haven't done
 @angular/flex-layout
 material themeing?
-
-
-
-
 
 other stuff:
 redux-freeze?

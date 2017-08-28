@@ -8,10 +8,22 @@ export class UserActions {
   static GET_USER_SUCCESS = 'GET_USER_SUCCESS';
   static ADD_USER = 'ADD_USER';
   static ADD_USER_SUCCESS = 'ADD_USER_SUCCESS';
+  static UPDATE_USER = 'UPDATE_USER';
+  static UPDATE_USER_SUCCESS = 'UPDATE_USER_SUCCESS';
+  static DELETE_USER = 'DELETE_USER';
+  static DELETE_USER_SUCCESS = 'DELETE_USER_SUCCESS';
   static GET_USERS = 'GET_USERS';
   static GET_USERS_SUCCESS = 'GET_USERS_SUCCESS';
   static SET_USER = 'SET_USER';
   static SET_DC = 'SET_DC';
+
+  @dispatch()
+  getUsers() {
+    return {type: UserActions.GET_USERS};
+  }
+  getUsersSuccess(users) {
+    return {type: UserActions.GET_USERS_SUCCESS, payload: users};
+  }
 
   @dispatch()
   getUser(id) {
@@ -30,24 +42,32 @@ export class UserActions {
   }
 
   @dispatch()
-  getUsers() {
-    return {type: UserActions.GET_USERS};
+  updateUser(user) {
+    return {type: UserActions.UPDATE_USER, payload: user};
   }
-  getUsersSuccess(users) {
-    return {type: UserActions.GET_USERS_SUCCESS, payload: users};
-  }
-
-
-/*
-  @dispatch()
-  setUser(user:IUser) {
-    return {type: UserActions.SET_USER, payload: user};
+  updateUserSuccess(user) {
+    return {type: UserActions.UPDATE_USER_SUCCESS, payload: user};
   }
 
   @dispatch()
-  setDc(id, dc) {
-    return {type: UserActions.SET_DC, payload: {id: id, dc: dc}};
+  deleteUser(id) {
+    return {type: UserActions.DELETE_USER, meta: {id: id}};
   }
-*/
+  deleteUserSuccess(num) {
+    return {type: UserActions.DELETE_USER_SUCCESS, payload: num};
+  }
+
+
+  /*
+    @dispatch()
+    setUser(user:IUser) {
+      return {type: UserActions.SET_USER, payload: user};
+    }
+
+    @dispatch()
+    setDc(id, dc) {
+      return {type: UserActions.SET_DC, payload: {id: id, dc: dc}};
+    }
+  */
 
 }

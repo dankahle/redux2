@@ -32,9 +32,9 @@ exports.update = function(id, body) {
 exports.remove = function(id) {
 	var user = getOneUser(id);
 	if(!user)
-		return {count: 0};
+		return 0;
 	_.pull(users, user);
-	return {count: 1};
+	return 1;
 }
 
 function getNextUserId() {
