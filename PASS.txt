@@ -1,18 +1,17 @@
 
 
-
-
 pass:
+just started the redux-no-epics branch. This one should be fun. You drop all epics, just use services and sync reducer actions.
+This is the middle ground I figure, a way to get a state driven app while chopping the productivity loss in half
+(and in the process holding on to your developers? There will be some that simply will not do redux in its current form of async actions)
 
-* router path and params in state
 
-
-
-rest of weekend:
+rest of weekend: (good one)
 material comps you haven't done
 @angular/flex-layout
 material themeing?
 
 other stuff:
-redux-freeze?
-immutability?
+* router path and params in state
+* redux-freeze?
+* immutability?
