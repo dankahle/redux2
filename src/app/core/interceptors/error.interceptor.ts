@@ -24,10 +24,10 @@ export class ErrorInterceptor implements HttpInterceptor {
       .catch(err => {
         this.interceptorActions.hideProgress();
         const config = <MdDialogConfig> {
-          data: {error: err.error},
+          // data: {error: err.error},
           width: '300px'
         }
-        config.data = {error: err};
+        this.interceptorActions.ajaxError(err.error);
         this.dialog.open(ErrorModalComponent, config);
         return Observable.of(err);
       })

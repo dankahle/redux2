@@ -9,6 +9,8 @@ export function interceptorReducer(state: IInterceptor = INTERCEPTOR_INITIAL_STA
       return {...state, showProgress: true};
     case InterceptorActions.HIDE_PROGRESS:
       return {...state, showProgress: false};
+    case InterceptorActions.AJAX_ERROR:
+      return {...state, ajaxError: action.payload};
     default:
       return state;
   }

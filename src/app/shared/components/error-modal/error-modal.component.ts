@@ -1,5 +1,8 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MD_DIALOG_DATA, MdDialogRef} from "@angular/material";
+import {Observable} from "rxjs/Observable";
+import {IAjaxError} from "../../../core/interceptors/redux/interceptor.model";
+import {select} from "@angular-redux/store";
 
 @Component({
   selector: 'dk-error-modal',
@@ -7,12 +10,15 @@ import {MD_DIALOG_DATA, MdDialogRef} from "@angular/material";
   styleUrls: ['./error-modal.component.scss']
 })
 export class ErrorModalComponent {
-  error: {message: string, status?:number, json?:any};
-  constructor(public dialogRef: MdDialogRef<ErrorModalComponent>, @Inject(MD_DIALOG_DATA) data: any) {
-    this.error = data.error.error;
-    if (this.error.status >= 500) {
-      this.error = {message: 'Well, this is embarrassing.'}
-    }
+  @select(['interceptor', 'ajaxError']) ajaxError$: Observable<IAjaxError>;
+  error: IAjaxError;
+  constructor(public dialogRef: MdDialogRef<ErrorModalComponent>) {
+    this.ajaxError$.subscribe(ajaxError => {
+      this.error = ajaxError;
+      if (this.error.status >= 500) {
+        this.error = {message: 'Well, this is embarrassing.'}
+      }
+    })
   }
 
 }
