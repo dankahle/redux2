@@ -76,8 +76,8 @@ export class UserComponent {
     }
   }
 
-  sendError(num) {
-    this.userService.getOne(num).subscribe(x => x);
+  sendError(id) {
+    this.userActions.getUser(id);
   }
 
 }

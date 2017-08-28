@@ -57,7 +57,6 @@ export class UserActions {
     return {type: UserActions.DELETE_USER_SUCCESS, payload: num};
   }
 
-
   /*
     @dispatch()
     setUser(user:IUser) {
