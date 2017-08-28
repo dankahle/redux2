@@ -62,6 +62,18 @@ export class UserService {
       .map(data => this.toUI(data));
   }
 
+/*
+  // hybrid approach2: lose the epics and push the work into service
+  addUser(user): Observable<IUser> {
+    this.userActions.addUser(user);
+    return this.add(user)
+      .map(newUser => {
+        this.userActions.addUserSuccess(newUser);
+        return newUser;
+      });
+  }
+*/
+
   update(user: IUser) {
     return this.http.put<IUser>(this.prefix + '/api/users/' + user.id, this.toApi(user))
       .map(data => this.toUI(data));

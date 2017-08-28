@@ -34,8 +34,17 @@ export class AddUserComponent {
       }
     })
 
+/*
+    // hybrid approach2: lose the epics and push the work into service
+    this.userService.addUser(this.formObj)
+      .subscribe(newUser => {
+        this.parent.refresh()
+        this.router.navigateByUrl('/user');
+      });
+*/
+
     /*
-    hybrid approach: lose the epics and go with sync reducer actions only:
+    hybrid approach1: lose the epics and go with sync reducer actions only
 
     this.userActions.addUser(this.formObj);
     this.userService.add(this.formObj)
@@ -46,6 +55,7 @@ export class AddUserComponent {
       });
 
      */
+
 
   }
 
