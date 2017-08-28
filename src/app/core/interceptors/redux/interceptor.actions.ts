@@ -7,6 +7,7 @@ export class InterceptorActions {
   static readonly SHOW_PROGRESS = "interceptor/SHOW_PROGRESS";
   static readonly HIDE_PROGRESS = "interceptor/HIDE_PROGRESS";
   static readonly AJAX_ERROR = "interceptor/AJAX_ERROR";
+  static readonly REQUEST_TIMER = "interceptor/REQUEST_TIMER";
 
   @dispatch()
   showProgress = () => ({type: InterceptorActions.SHOW_PROGRESS});
@@ -15,6 +16,9 @@ export class InterceptorActions {
 
   @dispatch()
   ajaxError = (payload) => ({type: InterceptorActions.AJAX_ERROR, payload: payload});
+
+  @dispatch()
+  requestTimer = (payload) => ({type: InterceptorActions.REQUEST_TIMER, payload: payload});
 
 }
 

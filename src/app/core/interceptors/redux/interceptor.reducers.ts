@@ -11,6 +11,8 @@ export function interceptorReducer(state: IInterceptor = INTERCEPTOR_INITIAL_STA
       return {...state, showProgress: false};
     case InterceptorActions.AJAX_ERROR:
       return {...state, ajaxError: action.payload};
+    case InterceptorActions.REQUEST_TIMER:
+      return {...state, requests: [...state.requests, action.payload]};
     default:
       return state;
   }
