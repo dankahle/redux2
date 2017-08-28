@@ -33,6 +33,20 @@ export class AddUserComponent {
         this.router.navigateByUrl('/user');
       }
     })
+
+    /*
+    hybrid approach: lose the epics and go with sync reducer actions only:
+
+    this.userActions.addUser(this.formObj);
+    this.userService.add(this.formObj)
+      .subscribe(newUser => {
+        this.userActions.addUserSuccess(newUser);
+        this.parent.refresh()
+        this.router.navigateByUrl('/user');
+      });
+
+     */
+
   }
 
   // this never gets called, but would if not in a child route, i.e. works if you put the form in userComponent
