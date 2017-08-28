@@ -5,7 +5,7 @@ import {IUser, IUserState} from "./redux/user.model";
 import {UserActions} from "./redux/user.actions";
 import {select} from "@angular-redux/store";
 import {Subject} from "rxjs/Subject";
-import {BehaviorSubject} from "rxjs/BehaviorSubject";
+import 'rxjs/add/operator/first';
 
 @Injectable()
 export class UserResolve implements Resolve<IUser> {
@@ -24,8 +24,7 @@ export class UserResolve implements Resolve<IUser> {
     // console.log('user resolve start');
     this.userActions.getUser(route.params.id);
     this.subject = new Subject<IUser>();
-    this.subject.subscribe(x => console.log('mysub', x));
-    return this.subject;
+    return this.subject.first();
   }
 
 }

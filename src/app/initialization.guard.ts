@@ -10,6 +10,7 @@ import {NgRedux, select} from "@angular-redux/store";
 import {InitializeActions} from "./core/initialize/initialize.actions";
 import {IAppState} from "./store/store.model";
 import {Subject} from "rxjs/Subject";
+import 'rxjs/add/operator/first';
 
 @Injectable()
 export class InitializationGuard implements CanActivate {
@@ -50,7 +51,7 @@ export class InitializationGuard implements CanActivate {
       }
       this.initializeActions.initialize();
       this.subject = new Subject<boolean>()
-      return this.subject;
+      return this.subject.first();
     }
 
 }
