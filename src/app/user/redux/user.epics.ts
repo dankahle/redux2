@@ -17,6 +17,7 @@ export class UserEpics {
   getEpics() {
     return combineEpics(
       this.getUserEpic(),
+      this.addUserEpic(),
       this.getUsersEpic()
     )
   }
@@ -28,6 +29,16 @@ export class UserEpics {
           return this.userService.getOne(action.meta.id)
         })
         .map(user => this.userActions.getUserSuccess(user));
+    }
+  }
+
+  addUserEpic() {
+    return action$ => {
+      return action$.ofType(UserActions.ADD_USER)
+        .switchMap(action => {
+          return this.userService.add(action.payload)
+        })
+        .map(user => this.userActions.addUserSuccess(user));
     }
   }
 

@@ -2,7 +2,10 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, ActivatedRouteSnapshot, Router} from "@angular/router";
 import {UserService} from "../user.service";
 import {UserComponent} from "../user/user.component";
-import {IUser} from "../redux/user.model";
+import {IUser, IUserState} from "../redux/user.model";
+import {UserActions} from "../redux/user.actions";
+import {select} from "@angular-redux/store";
+import {Observable} from "rxjs/Observable";
 
 @Component({
   selector: 'dk-add-user',
@@ -12,19 +15,24 @@ import {IUser} from "../redux/user.model";
 export class AddUserComponent {
   formObj: IUser = <IUser>{};
   @ViewChild('myform') myform;
+  @select(['userState']) userState$: Observable<IUserState>;
 
-  constructor(private router: Router, private userService: UserService, private parent: UserComponent) { }
+  constructor(private router: Router, private userService: UserService, private parent: UserComponent,
+              private userActions: UserActions) { }
 
   cancel() {
    this.router.navigateByUrl('/user');
   }
 
   addUser() {
-    this.userService.add(this.formObj)
-      .subscribe(newUser => {
+    this.userActions.addUser(this.formObj);
+    const sub = this.userState$.subscribe(userState => {
+      if (userState.addedUser) {
+        sub.unsubscribe();
         this.parent.refresh()
         this.router.navigateByUrl('/user');
-      });
+      }
+    })
   }
 
   // this never gets called, but would if not in a child route, i.e. works if you put the form in userComponent

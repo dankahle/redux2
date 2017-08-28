@@ -8,8 +8,10 @@ export interface IUser {
 
 export class IUserState {
   loadedUser: boolean;
+  addedUser: boolean;
   users: IUser[];
   user: IUser;
+  addUser: object;
 }
 
 export const USER_STATE_INITIAL: IUserState = <IUserState>{

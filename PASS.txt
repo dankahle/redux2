@@ -7,6 +7,7 @@ redux:
 cna't get user resolve to work with a subject, what? It's an observable right? YOu're using a subject in init guard....
 
 
+* interceptors
 * detail (page too, not just resolve)
 * add
 * edit

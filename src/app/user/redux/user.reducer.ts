@@ -8,6 +8,10 @@ export function userReducer(state: IUserState = USER_STATE_INITIAL, action) {
       return {...state, loadedUser: false};
     case UserActions.GET_USER_SUCCESS:
       return {...state, loadedUser: true, user: action.payload};
+    case UserActions.ADD_USER:
+      return {...state, addedUser: false, addUser: action.payload};
+    case UserActions.ADD_USER_SUCCESS:
+      return {...state, addedUser: true, addUser: action.payload};
     case UserActions.GET_USERS_SUCCESS:
       return {...state, users: action.payload};
     /*

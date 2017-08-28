@@ -1,10 +1,13 @@
 
 
 import {dispatch} from "@angular-redux/store";
+import {IUser} from "./user.model";
 
 export class UserActions {
   static GET_USER = 'GET_USER';
   static GET_USER_SUCCESS = 'GET_USER_SUCCESS';
+  static ADD_USER = 'ADD_USER';
+  static ADD_USER_SUCCESS = 'ADD_USER_SUCCESS';
   static GET_USERS = 'GET_USERS';
   static GET_USERS_SUCCESS = 'GET_USERS_SUCCESS';
   static SET_USER = 'SET_USER';
@@ -14,19 +17,26 @@ export class UserActions {
   getUser(id) {
     return {type: UserActions.GET_USER, meta: {id: id}};
   }
-
   getUserSuccess(user) {
     return {type: UserActions.GET_USER_SUCCESS, payload: user};
+  }
+
+  @dispatch()
+  addUser(user) {
+    return {type: UserActions.ADD_USER, payload: user};
+  }
+  addUserSuccess(user) {
+    return {type: UserActions.ADD_USER_SUCCESS, payload: user};
   }
 
   @dispatch()
   getUsers() {
     return {type: UserActions.GET_USERS};
   }
-
   getUsersSuccess(users) {
     return {type: UserActions.GET_USERS_SUCCESS, payload: users};
   }
+
 
 /*
   @dispatch()
