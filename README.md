@@ -9,5 +9,6 @@ this is a comparison on a small scale between angular and angular/redux. The two
 5. in root directory: "ng serve" to start the app which will be found at http://localhost;4200
 
 
-8/26/17
-working on redux-version, angular-version is complete
+8/28/17
+both redux-version and angular-version are complete. 
+Starting redux-no-epics version next which will drop epics, using services instead, and only sync reducer actions. This will simplify things considerably, yet still yield a state driven app, possibly the best of both worlds.
