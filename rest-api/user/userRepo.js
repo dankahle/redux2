@@ -7,17 +7,17 @@ var users = [
 ]
 
 exports.getAll = function() {
-	return users;
+  return users;
 }
 
 exports.getOne = function(id){
-	return getOneUser(id);
+  return getOneUser(id);
 }
 
 exports.add = function(user) {
-	user.id = getNextUserId();
-	users.push(user);
-	return user;
+  user.id = getNextUserId();
+  users.push(user);
+  return user;
 }
 
 exports.update = function(id, body) {
@@ -30,11 +30,11 @@ exports.update = function(id, body) {
 }
 
 exports.remove = function(id) {
-	var user = getOneUser(id);
-	if(!user)
-		return 0;
-	_.pull(users, user);
-	return 1;
+  var user = getOneUser(id);
+  if(!user)
+    return 0;
+  _.pull(users, user);
+  return 1;
 }
 
 function getNextUserId() {

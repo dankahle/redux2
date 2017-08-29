@@ -36,16 +36,16 @@ router.get('/:id', function (req, res, next) {
       });
     }
 
-      const user = repo.getOne(req.params.id);
-      if (user) {
-        res.send(user);
-      } else {
-        next({
-          status: 404,
-          message: 'User not found.'
-        });
-      }
-  }, 1000)
+    const user = repo.getOne(req.params.id);
+    if (user) {
+      res.send(user);
+    } else {
+      next({
+        status: 404,
+        message: 'User not found.'
+      });
+    }
+  },1000)
 })
 
 router.post('/', function (req, res) {
