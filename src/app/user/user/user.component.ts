@@ -30,7 +30,7 @@ export class UserComponent {
   }
 
   refresh() {
-    this.userActions.getUsers();
+    this.userService.getAll();
   }
 
   editUser(user) {

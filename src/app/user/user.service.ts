@@ -6,17 +6,14 @@ import {IUser} from "./redux/user.model";
 import {Observable} from "rxjs/Observable";
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/delay';
+import {UserActions} from "./redux/user.actions";
 
 @Injectable()
 export class UserService {
   prefix = 'http://localhost:3005';
   instance: IUser;
 
-  constructor(private http: HttpClient, private dataCategories: DataCategories) {
-  }
-
-  setInstance(user) {
-    this.instance = user;
+  constructor(private http: HttpClient, private dataCategories: DataCategories, private userActions: UserActions) {
   }
 
   toUI(user) {
@@ -40,20 +37,24 @@ export class UserService {
   }
 
   getAll() {
-    const params = new HttpParams().set('hideSpinner', 'false');
+    this.userActions.getUsers();
+    const params = new HttpParams().set('hideSpinner', 'false'); // could set this to true to hide ajax progress bar
     return <Observable<IUser[]>>this.http.get<IUser[]>(this.prefix + '/api/users', {params: params})
-      .map(users => users.map(user => this.toUI(user)));
+      .map(users => {
+        const uiUsers = users.map(user => this.toUI(user));
+        this.userActions.getUsersSuccess(uiUsers);
+        return uiUsers;
+      })
   }
 
-  getOne(id:number, setInstance?: boolean): Observable<IUser> {
+  getOne(id:number): Observable<IUser> {
+    this.userActions.getUser(id);
     return this.http.get<IUser>(this.prefix + '/api/users/' + id)
       .delay(200)
-      .map(data => {
-        const user = this.toUI(data);
-        if (setInstance) {
-          this.setInstance(user);
-        }
-        return user;
+      .map(user => {
+        const uiUser = this.toUI(user);
+        this.userActions.getUserSuccess(uiUser);
+        return uiUser;
       });
   }
 
