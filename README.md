@@ -9,7 +9,7 @@ this is a comparison on a small scale between angular and angular/redux. The two
 5. in root directory: "ng serve" to start the app which will be found at http://localhost:4200
 6. from here you can change branches to compare, though may be best to stop ng-serve and start again after switching branches
 
-####to compare:  
+#### to compare:  
 probably easier to just clone into 3 separate directories, then have 3 separate webstorm projects so you can just jump between them instead of changing branches
 
   
