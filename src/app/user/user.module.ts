@@ -13,7 +13,6 @@ import {AddUserComponent} from "./add-user/add-user.component";
 import {SharedModule} from "../shared/shared.module";
 import {UserActions} from "./redux/user.actions";
 import {NgReduxModule} from "@angular-redux/store";
-import {UserEpics} from "./redux/user.epics";
 
 export const userRoutes: Routes = [
   {
@@ -47,7 +46,7 @@ export const userRoutes: Routes = [
     RouterModule.forChild(userRoutes),
     SharedModule
   ],
-  providers: [UserService, UserResolve, UserActions, UserEpics],
+  providers: [UserService, UserResolve, UserActions],
   declarations: [UserComponent, UserDetailComponent, AddUserComponent],
   exports: [UserComponent, RouterModule],
 })

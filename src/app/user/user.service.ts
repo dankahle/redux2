@@ -59,29 +59,32 @@ export class UserService {
   }
 
   add(user: IUser) {
-    return this.http.post<IUser>(this.prefix + '/api/users', this.toApi(user))
-      .map(data => this.toUI(data));
-  }
-
-/*
-  // hybrid approach2: lose the epics and push the work into service
-  addUser(user): Observable<IUser> {
     this.userActions.addUser(user);
-    return this.add(user)
-      .map(newUser => {
-        this.userActions.addUserSuccess(newUser);
-        return newUser;
+    return this.http.post<IUser>(this.prefix + '/api/users', this.toApi(user))
+      .map(data => {
+        const uiUser = this.toUI(data)
+        this.userActions.addUserSuccess(uiUser);
+        return uiUser;
       });
   }
-*/
 
   update(user: IUser) {
+    this.userActions.updateUser(user);
     return this.http.put<IUser>(this.prefix + '/api/users/' + user.id, this.toApi(user))
-      .map(data => this.toUI(data));
+      .map(data => {
+        const uiUser = this.toUI(data)
+        this.userActions.updateUserSuccess(uiUser);
+        return uiUser;
+      });
   }
 
   delete(id:number) {
-    return this.http.delete(this.prefix + '/api/users/' + id);
+    this.userActions.deleteUser(id);
+    return this.http.delete(this.prefix + '/api/users/' + id)
+      .map(numDeleted => {
+        this.userActions.deleteUserSuccess(numDeleted);
+        return numDeleted;
+      })
   }
 
 }

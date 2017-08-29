@@ -1,9 +1,8 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {ActivatedRoute, ActivatedRouteSnapshot, Router} from "@angular/router";
+import {Router} from "@angular/router";
 import {UserService} from "../user.service";
 import {UserComponent} from "../user/user.component";
 import {IUser, IUserState} from "../redux/user.model";
-import {UserActions} from "../redux/user.actions";
 import {select} from "@angular-redux/store";
 import {Observable} from "rxjs/Observable";
 
@@ -17,45 +16,18 @@ export class AddUserComponent {
   @ViewChild('myform') myform;
   @select(['userState']) userState$: Observable<IUserState>;
 
-  constructor(private router: Router, private userService: UserService, private parent: UserComponent,
-              private userActions: UserActions) { }
+  constructor(private router: Router, private userService: UserService, private parent: UserComponent) { }
 
   cancel() {
    this.router.navigateByUrl('/user');
   }
 
   addUser() {
-    this.userActions.addUser(this.formObj);
-    const sub = this.userState$.subscribe(userState => {
-      if (userState.addedUser) {
-        sub.unsubscribe();
-        this.parent.refresh()
-        this.router.navigateByUrl('/user');
-      }
-    })
-
-/*
-    // hybrid approach2: lose the epics and push the work into service
-    this.userService.addUser(this.formObj)
-      .subscribe(newUser => {
-        this.parent.refresh()
-        this.router.navigateByUrl('/user');
-      });
-*/
-
-    /*
-    hybrid approach1: lose the epics and go with sync reducer actions only
-
-    this.userActions.addUser(this.formObj);
     this.userService.add(this.formObj)
       .subscribe(newUser => {
-        this.userActions.addUserSuccess(newUser);
         this.parent.refresh()
         this.router.navigateByUrl('/user');
       });
-
-     */
-
 
   }
 

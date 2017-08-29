@@ -1,6 +1,5 @@
 import {UserActions} from "./user.actions";
 import {IUserState, USER_STATE_INITIAL} from "./user.model";
-import * as _ from 'lodash';
 
 export function userReducer(state: IUserState = USER_STATE_INITIAL, action) {
   switch(action.type) {
@@ -20,30 +19,6 @@ export function userReducer(state: IUserState = USER_STATE_INITIAL, action) {
       return {...state, deletedUser: false, deleteUserId: action.meta.id};
     case UserActions.DELETE_USER_SUCCESS:
       return {...state, deletedUser: true, numDeleted: action.payload.count};
-    /*
-        case UserActions.SET_USER:
-          return {...state, user: action.payload};
-        case UserActions.SET_DC:
-        {
-          let newObj;
-          if (_.find(state.users, {id: action.payload.id})) {
-            let newUsers = [...state.users].map(user => {
-              return {...user};
-            });
-            let user = _.find(newUsers, {id: action.payload.id});
-            user.dc = action.payload.dc;
-            newObj = newObj || {};
-            newObj.users = newUsers;
-          }
-          if (state.user && state.user.id === action.payload.id) {
-            let newUser = {...state.user};
-            newUser.dc = action.payload.dc;
-            newObj = newObj || {};
-            newObj.user = newUser;
-          }
-          return {...state, ...newObj};
-        }
-    */
     default:
       return state
   }

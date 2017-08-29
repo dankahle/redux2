@@ -1,9 +1,14 @@
 
 
 pass:
-just started the redux-no-epics branch. This one should be fun. You drop all epics, just use services and sync reducer actions.
-This is the middle ground I figure, a way to get a state driven app while chopping the productivity loss in half
-(and in the process holding on to your developers? There will be some that simply will not do redux in its current form of async actions)
+userService.getDc is async, but your'e acting like it's sync,that woudl make toUI async right? Not so easy then, but that's the point isn't it? Make it difficult and see how much harder it is to do in redux.
+You'd need to fix that on all 3 branches then
+
+bug:
+getAll, getOne not working. what??
+
+
+
 
 redux-no-epics
 * drop all epics and use only sync actions, expect this to line up actions instead of them coming in helter skelter

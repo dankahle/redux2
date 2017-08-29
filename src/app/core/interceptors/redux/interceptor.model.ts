@@ -8,12 +8,9 @@ export interface IAjaxError {
 
 export interface IInterceptor {
   ajaxError: IAjaxError;
-  requests: string[];
 }
 
 
 
-export const INTERCEPTOR_INITIAL_STATE: IInterceptor = <IInterceptor>{
-  requests: []
-}
+export const INTERCEPTOR_INITIAL_STATE: IInterceptor = <IInterceptor>{}
 

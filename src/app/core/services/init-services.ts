@@ -12,7 +12,7 @@ export class Init1 {
     this.initializeActions.init1_load();
     return Observable.of('one')
       .do(data => this.initializeActions.init1_loadSuccess(data))
-      .do(data => console.log('init1'))
+      // .do(data => console.log('init1'))
       .delay(200);
   }
 }
@@ -24,7 +24,7 @@ export class Init2 {
     this.initializeActions.init2_load();
     return Observable.of('two')
       .do(data => this.initializeActions.init2_loadSuccess(data))
-      .do(data => console.log('init2'))
+      // .do(data => console.log('init2'))
       .delay(200);
   }
 }
@@ -36,7 +36,7 @@ export class Init3 {
     this.initializeActions.init3_load();
     return Observable.of('three')
       .do(data => this.initializeActions.init3_loadSuccess(data))
-      .do(data => console.log('init3'))
+      // .do(data => console.log('init3'))
       .delay(200);
   }
 }
@@ -48,7 +48,7 @@ export class Init4 {
     this.initializeActions.init4_load();
     return Observable.of('four')
       .do(data => this.initializeActions.init4_loadSuccess(data))
-      .do(data => console.log('init4'))
+      // .do(data => console.log('init4'))
       .delay(200);
   }
 }
@@ -60,7 +60,7 @@ export class Init5 {
     this.initializeActions.init5_load();
     return Observable.of('five')
       .do(data => this.initializeActions.init5_loadSuccess(data))
-      .do(data => console.log('init5'))
+      // .do(data => console.log('init5'))
       .delay(200);
   }
 }

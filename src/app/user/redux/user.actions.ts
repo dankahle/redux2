@@ -21,6 +21,7 @@ export class UserActions {
   getUsers() {
     return {type: UserActions.GET_USERS};
   }
+  @dispatch()
   getUsersSuccess(users) {
     return {type: UserActions.GET_USERS_SUCCESS, payload: users};
   }
@@ -29,6 +30,7 @@ export class UserActions {
   getUser(id) {
     return {type: UserActions.GET_USER, meta: {id: id}};
   }
+  @dispatch()
   getUserSuccess(user) {
     return {type: UserActions.GET_USER_SUCCESS, payload: user};
   }
@@ -37,6 +39,7 @@ export class UserActions {
   addUser(user) {
     return {type: UserActions.ADD_USER, payload: user};
   }
+  @dispatch()
   addUserSuccess(user) {
     return {type: UserActions.ADD_USER_SUCCESS, payload: user};
   }
@@ -45,6 +48,7 @@ export class UserActions {
   updateUser(user) {
     return {type: UserActions.UPDATE_USER, payload: user};
   }
+  @dispatch()
   updateUserSuccess(user) {
     return {type: UserActions.UPDATE_USER_SUCCESS, payload: user};
   }
@@ -53,20 +57,9 @@ export class UserActions {
   deleteUser(id) {
     return {type: UserActions.DELETE_USER, meta: {id: id}};
   }
+  @dispatch()
   deleteUserSuccess(num) {
     return {type: UserActions.DELETE_USER_SUCCESS, payload: num};
   }
-
-  /*
-    @dispatch()
-    setUser(user:IUser) {
-      return {type: UserActions.SET_USER, payload: user};
-    }
-
-    @dispatch()
-    setDc(id, dc) {
-      return {type: UserActions.SET_DC, payload: {id: id, dc: dc}};
-    }
-  */
 
 }
