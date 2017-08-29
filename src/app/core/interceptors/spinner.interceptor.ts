@@ -3,16 +3,16 @@ import {Injectable} from "@angular/core";
 import 'rxjs/add/operator/do';
 import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse} from "@angular/common/http";
 import {Observable} from "rxjs/Observable";
-import {InterceptorActions} from "./redux/interceptor.actions";
+import {ProgressService} from "../services/progress.service";
 
 
 @Injectable()
 export class SpinnerInterceptor implements HttpInterceptor {
-  constructor(private interceptorActions: InterceptorActions) {}
+  constructor(private progressService: ProgressService) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     if (req.params.get('hideSpinner') !== 'true') {
-      this.interceptorActions.showProgress();
+      this.progressService.showProgressBar();
     }
     let nextReq = req.clone({params: req.params.delete('hideSpinner')});
 
@@ -20,7 +20,7 @@ export class SpinnerInterceptor implements HttpInterceptor {
       .handle(nextReq)
       .do(event => {
         if (event instanceof HttpResponse) {
-          this.interceptorActions.hideProgress();
+          this.progressService.hideProgressBar();
         }
       });
   }

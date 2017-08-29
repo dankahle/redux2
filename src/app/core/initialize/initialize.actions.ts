@@ -1,5 +1,3 @@
-
-
 import {dispatch} from "@angular-redux/store";
 import {Injectable} from "@angular/core";
 
@@ -15,74 +13,61 @@ export class InitializeActions {
   static readonly init3_LOAD_SUCCESS = "init3/LOAD_SUCCESS";
   static readonly init4_LOAD_SUCCESS = "init4/LOAD_SUCCESS";
   static readonly init5_LOAD_SUCCESS = "init5/LOAD_SUCCESS";
-  static readonly init1_LOAD_FAILURE = "init1/LOAD_FAILURE";
-  static readonly init2_LOAD_FAILURE = "init2/LOAD_FAILURE";
-  static readonly init3_LOAD_FAILURE = "init3/LOAD_FAILURE";
-  static readonly init4_LOAD_FAILURE = "init4/LOAD_FAILURE";
-  static readonly init5_LOAD_FAILURE = "init5/LOAD_FAILURE";
   static readonly INITIALIZE = 'initialize/INITIALIZE';
-  static readonly INITIALIZE_LEVEL1 = 'initialize/INITIALIZE_LEVEL1';
-  static readonly INITIALIZE_LEVEL2 = 'initialize/INITIALIZE_LEVEL2';
-  static readonly INITIALIZE_LEVEL3 = 'initialize/INITIALIZE_LEVEL3';
   static readonly INITIALIZE_SUCCESS = 'initialize/INITIALIZE_SUCCESS';
-  static readonly INITIALIZE_FAILURE = 'initialize/INITIALIZE_FAILURE';
 
   @dispatch()
-  initialize = () => ({
-    type: InitializeActions.INITIALIZE,
-  });
+  initialize = () => ({type: InitializeActions.INITIALIZE});
 
-  initializeLevel1 = (str: string) => ({
-    type: InitializeActions.INITIALIZE_LEVEL1,
-    payload: str,
-  });
+  @dispatch()
+  initializeSuccess = () => ({type: InitializeActions.INITIALIZE_SUCCESS});
 
-  initializeLevel2 = (str: string) => ({
-    type: InitializeActions.INITIALIZE_LEVEL2,
-    payload: str,
-  });
-
-  initializeLevel3 = (str: string) => ({
-    type: InitializeActions.INITIALIZE_LEVEL3,
-    payload: str,
-  });
-
-  initializeSuccess = () => ({
-    type: InitializeActions.INITIALIZE_SUCCESS,
-  });
-
-  initializeFailure = (payload) => ({
-    type: InitializeActions.INITIALIZE_FAILURE,
-    payload: payload,
-  });
-
+  @dispatch()
   init1_load() {
     return {type: InitializeActions.init1_LOAD};
   }
+
+  @dispatch()
   init2_load() {
     return {type: InitializeActions.init2_LOAD};
   }
+
+  @dispatch()
   init3_load() {
     return {type: InitializeActions.init3_LOAD};
   }
+
+  @dispatch()
   init4_load() {
     return {type: InitializeActions.init4_LOAD};
   }
+
+  @dispatch()
   init5_load() {
     return {type: InitializeActions.init5_LOAD};
   }
+
+  @dispatch()
   init1_loadSuccess(payload) {
     return {type: InitializeActions.init1_LOAD_SUCCESS, payload: payload};
   }
+
+  @dispatch()
   init2_loadSuccess(payload) {
     return {type: InitializeActions.init2_LOAD_SUCCESS, payload: payload};
   }
+
+  @dispatch()
   init3_loadSuccess(payload) {
     return {type: InitializeActions.init3_LOAD_SUCCESS, payload: payload};
   }
+
+  @dispatch()
   init4_loadSuccess(payload) {
     return {type: InitializeActions.init4_LOAD_SUCCESS, payload: payload};
   }
+
+  @dispatch()
   init5_loadSuccess(payload) {
     return {type: InitializeActions.init5_LOAD_SUCCESS, payload: payload};
   }

@@ -5,6 +5,24 @@ just started the redux-no-epics branch. This one should be fun. You drop all epi
 This is the middle ground I figure, a way to get a state driven app while chopping the productivity loss in half
 (and in the process holding on to your developers? There will be some that simply will not do redux in its current form of async actions)
 
+redux-no-epics
+* drop all epics and use only sync actions, expect this to line up actions instead of them coming in helter skelter
+* remove noise from actions (toss: progress bar (back to service on that) and anything else you can to get actions to only what's necessary
+* get rid of all garbage in state, the wiating flags, but anything else that you can
+
+goal:
+back to observables for async, minimal state and actions, and the actions shoudl all line up chronoligically
+
+
+redux-version-cleaner: // not sure this is needed, but maybe the no-epics branch will show you a better way to do classical redux?
+* remove noise from actions (toss: progress bar (back to service on that) and anything else you can to get actions to only what's necessary
+* get rid of all garbage in state, the wiating flags, but anything else that you can
+
+angular-global-state:
+* implement your own observable global state service with an update function that does a zone.run and all is sync
+goal: to get the same global state as redux, but not drive the app with it, just use it for coordination between components
+
+
 
 rest of weekend: (good one)
 material comps you haven't done

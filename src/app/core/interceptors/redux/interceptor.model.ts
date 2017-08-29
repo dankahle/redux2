@@ -7,7 +7,6 @@ export interface IAjaxError {
 }
 
 export interface IInterceptor {
-  showProgress: boolean;
   ajaxError: IAjaxError;
   requests: string[];
 }

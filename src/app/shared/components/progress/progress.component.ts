@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {select} from "@angular-redux/store";
-import {Observable} from "rxjs/Observable";
+import {ProgressService} from "../../../core/services/progress.service";
 
 @Component({
   selector: 'dk-progress',
@@ -8,13 +7,12 @@ import {Observable} from "rxjs/Observable";
   styleUrls: ['./progress.component.scss']
 })
 export class ProgressComponent {
-show = false;
-value = 0;
-timer = null;
-@select(['interceptor', 'showProgress']) showProgress$: Observable<boolean>;
+  show = false;
+  value = 0;
+  timer = null;
 
-  constructor() {
-    this.showProgress$.subscribe(show => {
+  constructor(progressService: ProgressService) {
+    progressService.showProgress$.subscribe(show => {
       if (show) {
         this.show = true;
         this.value = 0;
